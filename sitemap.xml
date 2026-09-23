@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- TODO(Olivier) : remplacer VOTRE-DOMAINE.fr une fois le domaine choisi. -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://VOTRE-DOMAINE.fr/</loc></url>
+  <url><loc>https://VOTRE-DOMAINE.fr/projets/elodie-assistante-maternelle/</loc></url>
+  <url><loc>https://VOTRE-DOMAINE.fr/projets/st-creation-paysage/</loc></url>
+  <url><loc>https://VOTRE-DOMAINE.fr/mentions-legales/</loc></url>
+  <url><loc>https://VOTRE-DOMAINE.fr/confidentialite/</loc></url>
+  <url><loc>https://VOTRE-DOMAINE.fr/cgv/</loc></url>
+</urlset>

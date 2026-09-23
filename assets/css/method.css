@@ -1,0 +1,61 @@
+/* ==========================================================================
+   MÉTHODE — quatre étapes, montrées une à la fois.
+
+   Par défaut (mobile, pas de JS, mouvement réduit) : une simple liste
+   ordonnée, lisible de haut en bas.
+   Mode « enchaîné » (desktop + JS + mouvement autorisé, classe
+   .is-sequenced posée par method-steps.js) : la section devient une piste
+   haute ; l'écran reste fixé pendant que le scroll fait défiler les
+   étapes l'une après l'autre. Le scroll n'est jamais détourné : c'est le
+   scroll normal de la page qui fait avancer les étapes.
+   ========================================================================== */
+.method{ scroll-snap-align:start; }
+.method-inner{
+  padding:var(--scene-pad) var(--gutter) var(--scene-pad) var(--rail-space);
+}
+.method h2{ font-size:var(--fs-h2); max-width:14ch; }
+
+.steps{ margin-top:clamp(40px,7vh,72px); display:grid; gap:clamp(40px,7vh,64px); max-width:760px; }
+.step{ display:grid; gap:.8rem; }
+.step-num{ font-size:var(--fs-small); color:var(--thread); font-variant-numeric:tabular-nums; }
+.step h3{ font-size:clamp(1.8rem,1.3rem + 2vw,3rem); font-weight:300; }
+.step p{ color:var(--mist); max-width:var(--measure); font-size:var(--fs-lead); line-height:1.5; }
+
+/* Barre de progression des étapes (mode enchaîné uniquement). */
+.step-meter{ display:none; }
+
+/* Hauteur de la piste : un écran + 40 % d'écran de scroll par étape
+   (au lieu d'un écran entier) : on passe d'une étape à l'autre en
+   quelques crans de molette. */
+.method.is-sequenced{ height:calc(100svh + 40svh * 3); }
+.method.is-sequenced .method-inner{
+  position:sticky; top:0;
+  height:100svh;
+  display:grid; align-content:center;
+}
+.method.is-sequenced .steps{ display:grid; grid-template-areas:'stack'; }
+.method.is-sequenced .step{
+  grid-area:stack;
+  opacity:0; transform:translateY(18px);
+  transition:opacity .6s var(--ease), transform .6s var(--ease);
+}
+.method.is-sequenced .step.is-current{ opacity:1; transform:none; }
+.method.is-sequenced .step-meter{
+  display:flex; gap:8px; margin-top:clamp(40px,6vh,64px);
+}
+/* Chaque segment est un bouton : zone cliquable haute (44 px) pour un
+   trait visible fin (2 px), dessiné par ::before. */
+.step-meter button{
+  position:relative; width:56px; height:44px; padding:0;
+  border:0; background:none; cursor:pointer;
+}
+.step-meter button::before{
+  content:''; position:absolute; left:0; right:0; top:50%; height:2px;
+  background:var(--line);
+  transition:background var(--fast) var(--ease), height var(--fast) var(--ease);
+}
+.step-meter button:hover::before{ height:4px; background:rgba(var(--thread-rgb),.5); }
+.step-meter button.is-done::before{ background:var(--thread); }
+
+/* En mode enchaîné, chaque étape occupe l'écran : on la montre en grand. */
+.method.is-sequenced .step h3{ font-size:var(--fs-statement); }

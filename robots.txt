@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+# TODO(Olivier) : remplacer VOTRE-DOMAINE.fr une fois le domaine choisi.
+Sitemap: https://VOTRE-DOMAINE.fr/sitemap.xml

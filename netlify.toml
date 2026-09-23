@@ -1,0 +1,18 @@
+# ==========================================================================
+# Configuration Netlify — site 100 % statique, aucune commande de build.
+# ==========================================================================
+[build]
+  publish = "."
+  functions = "netlify/functions"
+
+# La fonction « submission-created » est déclenchée AUTOMATIQUEMENT par
+# Netlify à chaque envoi valide du formulaire (nom de fichier réservé).
+# Elle a besoin de trois variables d'environnement, à créer dans
+# Site configuration > Environment variables (jamais dans le code) :
+#   AIRTABLE_TOKEN     jeton personnel Airtable (droit : data.records:write)
+#   AIRTABLE_BASE_ID   identifiant de la base (commence par « app »)
+#   AIRTABLE_TABLE     nom de la table, par exemple « Demandes »
+# Sans ces variables, la fonction ne fait rien : les messages restent
+# disponibles dans l'onglet Forms de Netlify.
+
+# 404 : Netlify sert automatiquement /404.html, aucune règle nécessaire.

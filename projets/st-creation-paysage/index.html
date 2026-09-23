@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ST Création Paysage, étude de cas · Olivier Barontini</title>
+<meta name="description" content="Un site vitrine pour distinguer l'entreprise d'une homonyme installée dans un autre département.">
+<meta name="theme-color" content="#00060B">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="/assets/fonts/fraunces-var.woff2" as="font" type="font/woff2" crossorigin>
+<script src="/assets/js/motion-flag.js"></script>
+<link rel="stylesheet" href="/assets/css/tokens.css">
+<link rel="stylesheet" href="/assets/css/base.css">
+<link rel="stylesheet" href="/assets/css/cursor.css">
+<link rel="stylesheet" href="/assets/css/scenes.css">
+<link rel="stylesheet" href="/assets/css/pages.css">
+</head>
+<body>
+<a class="skip-link" href="#contenu">Aller au contenu</a>
+
+<!-- Barre fixe des pages secondaires : retour à gauche, contact à droite. -->
+<header class="page-bar">
+  <a class="action" href="/#st-creation-paysage"><span class="action-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M20 12H5M11 6l-6 6 6 6"/></svg></span><span class="action-label">Retour à l'accueil</span></a>
+  <a class="icon-link" href="/#contact" aria-label="Me contacter"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="1.5"/><path d="M3.5 6.5 12 13l8.5-6.5"/></svg></a>
+</header>
+
+<main id="contenu" tabindex="-1" class="page">
+  <p class="kicker">Paysagiste à Chaneins, dans l’Ain</p>
+  <h1>ST Création Paysage</h1>
+  <p class="lead">Un site vitrine pour distinguer l'entreprise d'une homonyme installée dans un autre département.</p>
+
+  <picture class="frame case-cover">
+    <source type="image/avif" srcset="/assets/img/st-creation-paysage-800.avif 800w, /assets/img/st-creation-paysage-1200.avif 1200w" sizes="(min-width: 1180px) 1080px, 100vw">
+    <img src="/assets/img/st-creation-paysage-1200.webp" srcset="/assets/img/st-creation-paysage-800.webp 800w, /assets/img/st-creation-paysage-1200.webp 1200w"
+         sizes="(min-width: 1180px) 1080px, 100vw" width="1200" height="750" fetchpriority="high"
+         alt="Page d'accueil du site ST Création Paysage : une terrasse en bois au bord d'une piscine, titre « Jardins, terrasses, piscines. Bâtis par nos mains. »">
+  </picture>
+
+  <div class="case-result">
+    <p>Trouvée sur Google depuis juillet.</p>
+    <small>45 arrivées depuis Google depuis la mise en service du domaine, fin juillet 2026, relevées dans la Search Console.</small>
+  </div>
+
+  <div class="case-story">
+    <section>
+      <h2>Le besoin</h2>
+      <p>Une entreprise invisible en ligne, et une homonyme qui occupait déjà le terrain sur son propre nom. Le site devait exister, mais surtout permettre de distinguer les deux entreprises dans les résultats de recherche.</p>
+    </section>
+    <section>
+      <h2>Ma démarche</h2>
+      <p>Le référencement local n'a pas été ajouté à la fin&nbsp;: il a structuré le projet dès le départ. Et les gérants devaient pouvoir faire vivre le site eux-mêmes, sans quoi il se serait figé au bout de trois mois.</p>
+    </section>
+    <section>
+      <h2>La solution</h2>
+      <p>Un site statique léger, des données structurées d'établissement, une zone d'intervention cartographiée. Un espace de gestion permet d'ajouter des photos de chantier et de modifier la FAQ&nbsp;; le site se régénère seul. Aucun traceur, donc aucun bandeau de cookies.</p>
+    </section>
+    <section>
+      <h2>Ce que j'en retiens</h2>
+      <p>La FAQ ne s'ouvrait pas sans JavaScript, invisible pour les moteurs de recherche. Je l'ai reconstruite en HTML natif. Ce genre de défaut ne se voit qu'en testant pour de vrai.</p>
+    </section>
+  </div>
+
+  <div class="case-end">
+    <a class="btn" href="https://www.st-creation-paysage.fr" target="_blank" rel="noopener">Voir le site en ligne <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
+    <a class="icon-link" href="/#contact" aria-label="Me parler de votre projet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="1.5"/><path d="M3.5 6.5 12 13l8.5-6.5"/></svg></a>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <!-- Identité légale : à compléter dès l'obtention du SIREN. -->
+  <p>Olivier Barontini, développeur web à Montagnat (Ain)<br>
+  <small>Entrepreneur individuel — SIREN <span class="todo">à compléter</span></small></p>
+  <nav aria-label="Informations légales">
+    <ul>
+      <li><a href="/mentions-legales/">Mentions légales</a></li>
+      <li><a href="/confidentialite/">Confidentialité</a></li>
+      <li><a href="/cgv/">Conditions de prestation</a></li>
+    </ul>
+  </nav>
+</footer>
+<script src="/assets/js/cursor.js" defer></script>
+</body>
+</html>

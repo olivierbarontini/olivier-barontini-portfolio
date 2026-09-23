@@ -1,0 +1,162 @@
+/* ==========================================================================
+   LE FIL — navigation principale.
+
+   Une seule structure HTML (<nav class="thread">) qui prend deux formes :
+   - desktop : un fil vertical toujours visible sur le bord gauche, qui se
+     remplit d'or au fil du scroll ; chaque nœud mène directement à une scène.
+   - mobile  : un panneau plein écran ouvert par un bouton, avec une fine
+     barre de progression en haut de l'écran.
+   Sans JavaScript, les nœuds restent de simples liens d'ancre : tout marche.
+
+   Le fil vertical n'est activé qu'avec une souris (survol possible) sur
+   un écran d'au moins 900 px : ses libellés n'apparaissent qu'au survol,
+   ils seraient introuvables au doigt. Une tablette, même large, reçoit
+   donc la barre du haut et le panneau.
+   ========================================================================== */
+
+/* ---------- Desktop : le fil vertical ---------- */
+@media (min-width:900px) and (hover:hover) and (pointer:fine){
+  :root{ --rail-space:clamp(96px,9vw,150px); }
+
+  .thread{
+    position:fixed; z-index:50;
+    left:clamp(24px,2.6vw,40px);
+    top:14vh; bottom:14vh;
+    width:28px;
+  }
+  /* Le fil au repos, puis sa partie dorée (hauteur pilotée par --progress,
+     une valeur de 0 à 1 mise à jour par thread-nav.js). */
+  .thread::before,
+  .thread::after{
+    content:''; position:absolute; left:13px; top:0; bottom:0; width:1px;
+  }
+  .thread::before{ background:var(--line); }
+  .thread::after{
+    background:linear-gradient(var(--thread),var(--ember));
+    transform-origin:top;
+    transform:scaleY(var(--progress,0));
+    box-shadow:0 0 8px rgba(var(--thread-rgb),.6);
+  }
+
+  .thread-list{
+    position:relative; z-index:1;
+    height:100%;
+    display:flex; flex-direction:column; justify-content:space-between;
+  }
+  /* La zone cliquable se limite au nœud (28 × 28 px). Le nom de la scène
+     est sorti du flux (position absolue) : invisible, il ne peut plus
+     « capter » le survol ou le clic des liens du contenu situés à côté. */
+  .thread-list a{
+    position:relative;
+    display:flex; align-items:center;
+    width:28px; height:28px;
+    text-decoration:none;
+  }
+  /* Le nœud : un petit anneau sur le fil. */
+  .thread-knot{
+    flex:none; width:11px; height:11px; margin-left:8px;
+    border-radius:50%;
+    background:var(--night);
+    box-shadow:inset 0 0 0 1px rgba(var(--parchment-rgb),.45);
+    transition:background var(--fast) var(--ease), box-shadow var(--fast) var(--ease), transform var(--fast) var(--ease);
+  }
+  /* Le nom de la scène n'apparaît qu'au survol ou au focus :
+     le fil reste silencieux tant qu'on ne le sollicite pas. */
+  .thread-label{
+    position:absolute; left:40px; top:50%; margin-top:-15px;
+    font-size:var(--fs-small); line-height:1.4; color:var(--parchment);
+    padding:4px 12px; border-radius:4px;
+    background:var(--deep);
+    box-shadow:inset 0 0 0 1px var(--line), 0 6px 18px rgba(0,0,0,.5);
+    opacity:0; transform:translateX(-6px);
+    transition:opacity var(--fast) var(--ease), transform var(--fast) var(--ease);
+    pointer-events:none; white-space:nowrap;
+    z-index:2;
+  }
+  .thread-list a:hover .thread-label,
+  .thread-list a:focus-visible .thread-label{ opacity:1; transform:none; }
+  .thread-list a:hover .thread-knot{ transform:scale(1.25); }
+
+  .thread-list a[aria-current="true"] .thread-knot{
+    background:var(--thread);
+    box-shadow:0 0 0 4px rgba(var(--thread-rgb),.18), 0 0 12px rgba(var(--thread-rgb),.7);
+  }
+
+  .thread-panel-extras,
+  .topbar,
+  .thread-progress{ display:none; }
+
+  /* Icônes de contact, discrètes, en haut à droite. */
+  .corner{
+    position:fixed; z-index:50; top:22px; right:clamp(20px,2.6vw,40px);
+    display:flex; align-items:center; gap:10px;
+  }
+  .corner .icon-link{ background:rgba(0,6,11,.55); backdrop-filter:blur(6px); }
+}
+
+/* ---------- Mobile : bouton + panneau plein écran ---------- */
+@media not all and (min-width:900px) and (hover:hover) and (pointer:fine){
+  .corner{ display:none; }
+
+  .thread-progress{
+    position:fixed; z-index:75; left:0; right:0; top:0; height:2px;
+    background:linear-gradient(90deg,var(--thread),var(--ember));
+    transform-origin:left; transform:scaleX(var(--progress,0));
+  }
+
+  /* Barre du haut : un fond qui s'estompe vers le bas, pour que le texte
+     qui défile ne passe jamais « sous » le bouton sans être masqué. */
+  .topbar{
+    position:fixed; z-index:70; top:0; left:0; right:0;
+    display:flex; align-items:center; justify-content:space-between; gap:12px;
+    padding:max(12px,env(safe-area-inset-top)) var(--gutter) 22px;
+    background:linear-gradient(var(--night) 0,var(--night) 58%,rgba(0,6,11,0) 100%);
+    pointer-events:none;
+  }
+  .topbar > *{ pointer-events:auto; }
+  .topbar-name{
+    font-size:var(--fs-small); letter-spacing:.01em; text-decoration:none;
+    color:var(--parchment);
+    min-height:44px; display:inline-flex; align-items:center;
+  }
+  /* Le bouton dit ce qu'il fait : « Menu » écrit en toutes lettres,
+     l'icône seule (deux traits) étant ambiguë sur mobile. */
+  .thread-toggle{
+    display:inline-flex; align-items:center; gap:10px;
+    min-height:44px; padding:0 16px 0 18px; border:0; border-radius:999px;
+    background:rgba(8,18,26,.85); backdrop-filter:blur(8px);
+    box-shadow:inset 0 0 0 1px rgba(var(--thread-rgb),.45);
+    color:var(--parchment); font:inherit; font-size:var(--fs-small); cursor:pointer;
+  }
+  .thread-toggle svg{ width:20px; height:20px; flex:none; }
+  .thread-toggle .icon-close{ display:none; }
+  .thread-toggle[aria-expanded="true"] .icon-open{ display:none; }
+  .thread-toggle[aria-expanded="true"] .icon-close{ display:block; }
+
+  /* Fermé : le panneau n'existe pas pour personne (ni écran, ni clavier). */
+  .thread{ display:none; }
+  .thread.is-open{
+    display:flex; flex-direction:column; justify-content:center;
+    position:fixed; inset:0; z-index:65;
+    padding:104px var(--gutter) max(48px,env(safe-area-inset-bottom));
+    background:var(--night);
+    overflow-y:auto;
+    animation:panelIn .35s var(--ease);
+  }
+  @keyframes panelIn{ from{ opacity:0; } to{ opacity:1; } }
+
+  .thread-list{ display:grid; gap:6px; }
+  .thread-list a{
+    display:flex; align-items:center; gap:16px;
+    min-height:52px; text-decoration:none;
+    font-size:clamp(1.6rem,6vw,2.1rem); font-weight:320;
+  }
+  .thread-knot{
+    width:9px; height:9px; border-radius:50%;
+    box-shadow:inset 0 0 0 1px rgba(var(--parchment-rgb),.5);
+  }
+  .thread-list a[aria-current="true"]{ color:var(--ember); }
+  .thread-list a[aria-current="true"] .thread-knot{ background:var(--thread); box-shadow:none; }
+
+  .thread-panel-extras{ margin-top:44px; }
+}

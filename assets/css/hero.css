@@ -1,0 +1,115 @@
+/* ==========================================================================
+   HERO — l'image des Moires, révélée par le regard.
+
+   Deux copies de la même image sont superposées (une seule est téléchargée,
+   le navigateur réutilise le fichier) :
+   - .hero-base : la version « au clair de lune », désaturée et assombrie ;
+   - .hero-lit  : la version en couleurs, visible seulement dans un halo
+                  qui suit le pointeur, ou se promène seul quand rien ne bouge.
+   Tant que hero-reveal.js n'a pas ajouté .is-live (pas de JS, mouvement
+   réduit), l'image en couleurs s'affiche entière : rien n'est jamais caché.
+   ========================================================================== */
+.hero{
+  position:relative;
+  height:100svh; min-height:560px;
+  overflow:hidden;
+  background:var(--night);
+  scroll-snap-align:start;
+  isolation:isolate;
+}
+
+.hero-media,
+.hero-media picture{ position:absolute; inset:0; }
+.hero-media img{
+  width:100%; height:100%;
+  object-fit:cover;
+  object-position:50% 60%;
+}
+
+.hero.is-live .hero-base img{
+  filter:saturate(.18) brightness(.5);
+}
+.hero.is-live .hero-lit img{
+  --x:50%; --y:60%; --r:0px;   /* valeurs écrites par hero-reveal.js */
+  -webkit-mask-image:radial-gradient(circle var(--r) at var(--x) var(--y),#000 0,#000 32%,transparent 100%);
+          mask-image:radial-gradient(circle var(--r) at var(--x) var(--y),#000 0,#000 32%,transparent 100%);
+}
+
+/* Le texte occupe le ciel noir de l'image : aucun voile n'est nécessaire
+   pour le lire, le contraste est déjà maximal. */
+.hero-text{
+  position:absolute; z-index:2;
+  top:clamp(96px,17vh,190px);
+  left:calc(var(--rail-space) + 0px);
+  right:var(--gutter);
+  pointer-events:none;
+}
+/* Largeurs en « ch » posées sur chaque élément : elles se mesurent alors
+   dans la taille de SA police, pas dans celle du conteneur. */
+.hero-text h1{
+  max-width:13ch;
+  font-size:clamp(2.3rem,1.3rem + 3.2vw,4.4rem);
+  font-weight:300;
+  line-height:1.02;
+}
+.hero-text p{
+  margin-top:1.4rem;
+  max-width:30ch;
+  font-size:var(--fs-lead);
+  line-height:1.5;
+  color:var(--mist);
+}
+
+/* Indice de scroll : un fil qui descend, rien de plus. */
+.hero-cue{
+  position:absolute; z-index:2; left:50%; bottom:max(18px,env(safe-area-inset-bottom));
+  transform:translateX(-50%);
+  display:grid; justify-items:center; gap:10px;
+  padding:6px 12px;
+  color:var(--parchment); font-size:var(--fs-small); text-decoration:none;
+}
+.hero-cue:hover{ color:var(--ember); }
+.hero-cue span{
+  display:block; width:1px; height:44px;
+  background:linear-gradient(transparent,var(--thread),transparent);
+  animation:cue 2.6s var(--ease) infinite;
+}
+@keyframes cue{
+  0%,100%{ opacity:.25; transform:translateY(-6px); }
+  50%{ opacity:1; transform:translateY(6px); }
+}
+
+/* ---------- Mobile et tablette portrait : texte puis image, empilés ----------
+   En superposition, le texte et le personnage se chevauchaient : la place
+   du texte dépend de la hauteur de l'écran, celle du personnage du
+   recadrage de l'image. Ici le texte occupe le haut, l'image prend tout
+   l'espace restant sous lui : ils ne peuvent plus se toucher, quel que
+   soit le téléphone. Le ciel de l'image étant de la couleur du fond,
+   la jonction reste invisible. */
+@media (max-width:899.98px){
+  .hero{
+    height:auto; min-height:100svh;
+    display:grid; grid-template-rows:auto 1fr;
+  }
+  .hero-text{ grid-row:1; }
+  .hero-media{ grid-row:2; }
+  .hero-text{
+    position:relative; inset:auto;
+    padding:calc(max(12px,env(safe-area-inset-top)) + 76px) var(--gutter) 0;
+  }
+  .hero-text h1{ max-width:14ch; font-size:clamp(2.2rem,1.4rem + 3.4vw,3.4rem); }
+  .hero-text p{ font-size:var(--fs-body); margin-top:1rem; }
+
+  .hero-media{
+    position:relative; inset:auto;
+    min-height:max(46svh,260px);
+    /* Fondu en haut : l'image naît de la nuit, sans bord. */
+    -webkit-mask-image:linear-gradient(transparent 0,#000 18%);
+            mask-image:linear-gradient(transparent 0,#000 18%);
+  }
+  .hero-media picture{ position:absolute; inset:0; }
+  /* Recadrage centré sur la fileuse et son reflet (le ciel vide est
+     coupé). --halo-y : hauteur du fil dans ce cadre, lue par hero-reveal.js. */
+  .hero-media img{ object-position:72% 78%; }
+  .hero-lit img{ --halo-y:.42; }
+}

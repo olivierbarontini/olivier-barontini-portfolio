@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Le site d’Élodie, étude de cas · Olivier Barontini</title>
+<meta name="description" content="Un site conçu pour rassurer les familles avant le premier rendez-vous.">
+<meta name="theme-color" content="#00060B">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="/assets/fonts/fraunces-var.woff2" as="font" type="font/woff2" crossorigin>
+<script src="/assets/js/motion-flag.js"></script>
+<link rel="stylesheet" href="/assets/css/tokens.css">
+<link rel="stylesheet" href="/assets/css/base.css">
+<link rel="stylesheet" href="/assets/css/cursor.css">
+<link rel="stylesheet" href="/assets/css/scenes.css">
+<link rel="stylesheet" href="/assets/css/pages.css">
+</head>
+<body>
+<a class="skip-link" href="#contenu">Aller au contenu</a>
+
+<!-- Barre fixe des pages secondaires : retour à gauche, contact à droite. -->
+<header class="page-bar">
+  <a class="action" href="/#elodie"><span class="action-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M20 12H5M11 6l-6 6 6 6"/></svg></span><span class="action-label">Retour à l'accueil</span></a>
+  <a class="icon-link" href="/#contact" aria-label="Me contacter"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="1.5"/><path d="M3.5 6.5 12 13l8.5-6.5"/></svg></a>
+</header>
+
+<main id="contenu" tabindex="-1" class="page">
+  <p class="kicker">Assistante maternelle à Montagnat</p>
+  <h1>Le site d’Élodie</h1>
+  <p class="lead">Un site conçu pour rassurer les familles avant le premier rendez-vous.</p>
+
+  <picture class="frame case-cover">
+    <source type="image/avif" srcset="/assets/img/elodie-assistante-maternelle-800.avif 800w, /assets/img/elodie-assistante-maternelle-1200.avif 1200w" sizes="(min-width: 1180px) 1080px, 100vw">
+    <img src="/assets/img/elodie-assistante-maternelle-1200.webp" srcset="/assets/img/elodie-assistante-maternelle-800.webp 800w, /assets/img/elodie-assistante-maternelle-1200.webp 1200w"
+         sizes="(min-width: 1180px) 1080px, 100vw" width="1200" height="750" fetchpriority="high"
+         alt="Page d'accueil du site d'Élodie : le jardin et l'aire de jeux en grande image, avec l'accroche « Je m'appelle Élodie ».">
+  </picture>
+
+  <div class="case-result">
+    <p>Deux contrats signés, une troisième demande.</p>
+    <small>Depuis l'été 2026, grâce au site et à la fiche Google. Les contrats sont des placements réels, pas des demandes de renseignement. 105 arrivées depuis Google sur les trois premiers mois, relevées dans la Search Console.</small>
+  </div>
+
+  <div class="case-story">
+    <section>
+      <h2>Le besoin</h2>
+      <p>Une assistante maternelle est comparée avant même d'être rencontrée. Le site ne devait pas seulement présenter une activité&nbsp;: il devait accompagner une décision, celle de confier son enfant à quelqu'un.</p>
+    </section>
+    <section>
+      <h2>Ma démarche</h2>
+      <p>J'avais carte blanche sur les textes et la conception. J'ai écrit le site autour de ce qu'une famille veut savoir avant d'appeler&nbsp;: le lieu, le rythme d'une journée, le cadre, la personne.</p>
+    </section>
+    <section>
+      <h2>La solution</h2>
+      <p>Un site vitrine pensé comme une mise en confiance, un espace réservé aux familles déjà accueillies, et la présence locale traitée comme une partie du travail&nbsp;: fiche Google, référencement local, suivi de l'indexation.</p>
+    </section>
+    <section>
+      <h2>Ce que j'en retiens</h2>
+      <p>Le livrable n'était pas un site, c'était une capacité à être choisie. Côté technique, l'espace privé a demandé le plus de rigueur&nbsp;: les droits d'accès se vérifient sur le serveur, jamais dans le navigateur.</p>
+    </section>
+  </div>
+
+  <div class="case-end">
+    <a class="btn" href="https://elodie-assistante-maternelle.fr" target="_blank" rel="noopener">Voir le site en ligne <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
+    <a class="icon-link" href="/#contact" aria-label="Me parler de votre projet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="1.5"/><path d="M3.5 6.5 12 13l8.5-6.5"/></svg></a>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <!-- Identité légale : à compléter dès l'obtention du SIREN. -->
+  <p>Olivier Barontini, développeur web à Montagnat (Ain)<br>
+  <small>Entrepreneur individuel — SIREN <span class="todo">à compléter</span></small></p>
+  <nav aria-label="Informations légales">
+    <ul>
+      <li><a href="/mentions-legales/">Mentions légales</a></li>
+      <li><a href="/confidentialite/">Confidentialité</a></li>
+      <li><a href="/cgv/">Conditions de prestation</a></li>
+    </ul>
+  </nav>
+</footer>
+<script src="/assets/js/cursor.js" defer></script>
+</body>
+</html>

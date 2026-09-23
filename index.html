@@ -1,0 +1,501 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Olivier Barontini, développeur web dans l'Ain et à distance</title>
+<meta name="description" content="Je construis des sites sur mesure, des automatisations et des outils d'IA utiles. Développeur web à Montagnat (Ain), en local et à distance.">
+<!-- TODO(Olivier) une fois le domaine choisi : <link rel="canonical">, og:url,
+     images Open Graph en URL absolue, champ "url" du JSON-LD, sitemap.xml, robots.txt. -->
+<meta property="og:type" content="website">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:title" content="Olivier Barontini, développeur web">
+<meta property="og:description" content="Sites sur mesure, automatisations et IA appliquée. Dans l'Ain et à distance.">
+<meta property="og:image" content="/assets/img/hero-desktop.webp">
+<meta name="theme-color" content="#00060B">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="/assets/fonts/fraunces-var.woff2" as="font" type="font/woff2" crossorigin>
+
+<!-- Doit s'exécuter avant l'affichage : autorise ou non les animations. -->
+<script src="/assets/js/motion-flag.js"></script>
+
+<!-- Une feuille par responsabilité (voir README). -->
+<link rel="stylesheet" href="/assets/css/tokens.css">
+<link rel="stylesheet" href="/assets/css/base.css">
+<link rel="stylesheet" href="/assets/css/cursor.css">
+<link rel="stylesheet" href="/assets/css/thread.css">
+<link rel="stylesheet" href="/assets/css/hero.css">
+<link rel="stylesheet" href="/assets/css/scenes.css">
+<link rel="stylesheet" href="/assets/css/method.css">
+<link rel="stylesheet" href="/assets/css/faq.css">
+<link rel="stylesheet" href="/assets/css/contact.css">
+<link rel="stylesheet" href="/assets/css/invite.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Olivier Barontini",
+  "jobTitle": "Développeur web",
+  "email": "mailto:olivier.barontini@gmail.com",
+  "address": { "@type": "PostalAddress", "addressLocality": "Montagnat", "addressRegion": "Ain", "addressCountry": "FR" },
+  "knowsAbout": ["Développement web", "Automatisation", "Intelligence artificielle appliquée"],
+  "sameAs": ["https://www.linkedin.com/in/olivier-barontini-5407103a3/", "https://github.com/olivierbarontini"]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Je n'y connais rien en technique. Est-ce un problème ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Non, c'est même pour ça que je suis là. Je vous explique chaque choix simplement, sans jargon, et vous validez chaque étape."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Combien coûte un site ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Un site vitrine sur mesure démarre à 1 200 €, et se situe le plus souvent entre 1 200 et 2 500 € selon le nombre de pages et le travail de rédaction. Une première automatisation démarre à 400 €. La maintenance est facturée à part, au coup par coup ou au forfait annuel. Ces montants sont des repères, pas un tarif fixe : le prix exact dépend de votre besoin réel. Le premier échange est gratuit et sans engagement."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Combien de temps faut-il ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Les délais sont courts : je travaille sur peu de projets à la fois. Le délai exact est annoncé dans le devis, et vous voyez le site avancer étape par étape."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Le site m'appartiendra-t-il ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Oui. Le site, les textes et le nom de domaine sont à vous. Aucun abonnement ne vous est imposé."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Pourrai-je modifier mon site moi-même ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Si vous le souhaitez, oui. Je peux prévoir un espace simple pour ajouter vos photos ou changer vos textes, comme je l'ai fait pour ST Création Paysage."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Travaillez-vous à distance ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Oui. Je me déplace dans un rayon d'environ 30 km autour de Bourg-en-Bresse, et plus loin selon le projet. Partout ailleurs, je travaille à distance : visio, e-mail, étapes partagées en ligne."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Assurez-vous la maintenance ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Oui, et c'est volontaire : un site laissé seul vieillit vite. Mises à jour, sauvegardes, corrections, petites évolutions — vous choisissez ce que vous me confiez, au coup par coup ou en suivi régulier."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Et après la mise en ligne ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Le suivi fait partie du métier : corrections, évolutions, fiche Google, résultats mesurés. On décide ensemble de ce dont vous avez besoin."
+      }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<a class="skip-link" href="#contenu">Aller au contenu</a>
+
+<!-- ======================================================================
+     NAVIGATION — le fil (desktop) / le panneau (mobile). Voir thread.css.
+     ====================================================================== -->
+<div class="thread-progress" aria-hidden="true"></div>
+
+<!-- Barre du haut (mobile et tablette) : nom + bouton Menu. -->
+<header class="topbar">
+  <a class="topbar-name" href="#accueil">Olivier Barontini</a>
+  <button class="thread-toggle" type="button" aria-expanded="false" aria-controls="thread">
+    <span class="thread-toggle-label">Menu</span>
+    <svg class="icon-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    <svg class="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+  </button>
+</header>
+
+<nav class="thread" id="thread" aria-label="Sections de la page">
+  <ol class="thread-list">
+    <li><a href="#accueil"><span class="thread-knot" aria-hidden="true"></span><span class="thread-label">Accueil</span></a></li>
+    <li><a href="#ce-que-je-fais"><span class="thread-knot" aria-hidden="true"></span><span class="thread-label">Ce que je fais</span></a></li>
+    <li><a href="#elodie"><span class="thread-knot" aria-hidden="true"></span><span class="thread-label">Élodie, assistante maternelle</span></a></li>
+    <li><a href="#st-creation-paysage"><span class="thread-knot" aria-hidden="true"></span><span class="thread-label">ST Création Paysage</span></a></li>
+    <li><a href="#methode"><span class="thread-knot" aria-hidden="true"></span><span class="thread-label">Ma façon de travailler</span></a></li>
+    <li><a href="#parcours"><span class="thread-knot" aria-hidden="true"></span><span class="thread-label">Mon parcours</span></a></li>
+    <li><a href="#questions"><span class="thread-knot" aria-hidden="true"></span><span class="thread-label">Vos questions</span></a></li>
+    <li><a href="#contact"><span class="thread-knot" aria-hidden="true"></span><span class="thread-label">Contact</span></a></li>
+  </ol>
+  <!-- Visible uniquement dans le panneau mobile. -->
+  <div class="thread-panel-extras icon-row">
+    <a class="icon-link" href="mailto:olivier.barontini@gmail.com" aria-label="M'écrire un e-mail">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="1.5"/><path d="M3.5 6.5 12 13l8.5-6.5"/></svg>
+    </a>
+    <a class="icon-link" href="https://www.linkedin.com/in/olivier-barontini-5407103a3/" target="_blank" rel="noopener" aria-label="Mon profil LinkedIn (nouvel onglet)">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><text x="12" y="16.5" text-anchor="middle" font-family="Georgia,serif" font-size="15.5" font-weight="700">in</text></svg>
+    </a>
+    <a class="icon-link" href="https://github.com/olivierbarontini" target="_blank" rel="noopener" aria-label="Mes projets sur GitHub (nouvel onglet)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M8.5 7 3.5 12l5 5M15.5 7l5 5-5 5M13.5 5l-3 14"/></svg>
+    </a>
+  </div>
+</nav>
+
+<!-- Contact direct, toujours à portée (desktop). -->
+<div class="corner">
+  <a class="icon-link" href="#contact" aria-label="Me contacter"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="1.5"/><path d="M3.5 6.5 12 13l8.5-6.5"/></svg></a>
+  <a class="icon-link" href="https://www.linkedin.com/in/olivier-barontini-5407103a3/" target="_blank" rel="noopener" aria-label="Mon profil LinkedIn (nouvel onglet)">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><text x="12" y="16.5" text-anchor="middle" font-family="Georgia,serif" font-size="15.5" font-weight="700">in</text></svg>
+  </a>
+</div>
+
+<!-- Pastille de contact (mobile et tablette) : apparaît après les projets
+     clients, disparaît quand le formulaire est à l'écran. Voir invite.css. -->
+<a class="invite" href="#contact">Me contacter</a>
+
+<main id="contenu" tabindex="-1">
+
+  <!-- ====================================================================
+       1. HERO — une image, une phrase.
+       ==================================================================== -->
+  <section class="hero" id="accueil" aria-labelledby="hero-title">
+    <div class="hero-media">
+      <picture class="hero-base">
+        <source media="(min-width: 1100px)" srcset="/assets/img/hero-desktop.webp">
+        <source media="(min-width: 700px)" srcset="/assets/img/hero-tablet.webp">
+        <img src="/assets/img/hero-mobile.webp" width="940" height="1674" fetchpriority="high"
+             alt="Trois fileuses au bord d'une eau sombre, reliées par un fil doré qui part d'un point de lumière.">
+      </picture>
+      <!-- Même image, en couleurs, révélée par le halo (décorative). -->
+      <picture class="hero-lit" aria-hidden="true">
+        <source media="(min-width: 1100px)" srcset="/assets/img/hero-desktop.webp">
+        <source media="(min-width: 700px)" srcset="/assets/img/hero-tablet.webp">
+        <img src="/assets/img/hero-mobile.webp" width="940" height="1674" alt="">
+      </picture>
+    </div>
+
+    <div class="hero-text">
+      <h1 id="hero-title">Je construis des sites qui racontent quelque chose.</h1>
+      <p>Je suis Olivier, développeur web à Montagnat, dans l'Ain. Je travaille aussi à distance.</p>
+      <!-- Mobile uniquement (masqué au-dessus de 900 px, voir hero.css) :
+           le Hero desktop reste volontairement sans appel à l'action. -->
+      <a class="hero-contact" href="#contact">Me contacter</a>
+    </div>
+
+    <a class="hero-cue" href="#ce-que-je-fais">Découvrir<span aria-hidden="true"></span></a>
+  </section>
+
+  <!-- ====================================================================
+       2. CE QUE JE FAIS — trois phrases, rien d'autre.
+       ==================================================================== -->
+  <section class="scene" id="ce-que-je-fais" data-reveal aria-labelledby="t-offre">
+    <h2 class="kicker" id="t-offre">Ce que je fais</h2>
+    <div class="offer fade">
+      <div class="offer-item">
+        <h3>Des sites sur mesure.</h3>
+        <p>Je pars de votre activité&nbsp;: j'écris les textes, je dessine le site, je le construis.</p>
+      </div>
+      <div class="offer-item">
+        <h3>Des automatisations.</h3>
+        <p>Une demande arrive par votre site&nbsp;: elle est rangée, vous êtes prévenu, votre client reçoit une réponse. Devis, relances, rappels de rendez-vous&nbsp;: ce que vous refaites à la main chaque semaine <span class="lumen">se fait tout seul</span>.</p>
+      </div>
+      <div class="offer-item">
+        <h3>De l'IA, là où elle sert.</h3>
+        <p>Pas partout. Seulement quand elle vous fait <span class="lumen">vraiment gagner du temps</span>.</p>
+      </div>
+      <div class="offer-item">
+        <h3>Des outils, pas seulement des sites.</h3>
+        <p>Quand un site ne suffit plus&nbsp;: un espace client, un tableau de suivi, une petite application métier accessible par abonnement. Et, une fois en ligne, une <span class="lumen">maintenance assurée</span> aussi longtemps que vous le souhaitez.</p>
+      </div>
+      <div class="offer-item">
+        <h3>Et ce qui n'entre dans aucune case.</h3>
+        <p>Je donne du sens à votre projet, puis je trouve l'outil qu'il faut, ou je le fabrique. Seul ou avec d'autres, par étapes courtes, en restant à l'affût de ce qui change.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================================================================
+       3. PREUVE — Élodie. Chiffres donnés par la cliente, non arrondis.
+       ==================================================================== -->
+  <section class="scene" id="elodie" data-reveal aria-labelledby="t-elodie">
+    <div class="proof">
+      <div class="proof-text fade">
+        <p class="kicker">Élodie, assistante maternelle à Montagnat</p>
+        <h2 class="proof-statement" id="t-elodie">Deux contrats signés, une troisième demande.</h2>
+        <p class="proof-detail">Depuis cet été, grâce à son site et à <span class="lumen">sa fiche Google</span>. J'ai écrit les textes, conçu le site et pris en charge le référencement local.</p>
+        <div class="action-row">
+          <a class="action" href="/projets/elodie-assistante-maternelle/"><span class="action-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 12h15M13 6l6 6-6 6"/></svg></span><span class="action-label">Lire l'histoire du projet</span><span class="sr-only"> d'Élodie</span></a>
+          <a class="action" href="https://elodie-assistante-maternelle.fr" target="_blank" rel="noopener"><span class="action-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M7 17 17 7M9 7h8v8"/></svg></span><span class="action-label">Voir le site en ligne</span><span class="sr-only"> d'Élodie (nouvel onglet)</span></a>
+        </div>
+      </div>
+      <picture class="frame">
+        <source type="image/avif" srcset="/assets/img/elodie-assistante-maternelle-800.avif 800w, /assets/img/elodie-assistante-maternelle-1200.avif 1200w" sizes="(min-width: 900px) 55vw, 100vw">
+        <img src="/assets/img/elodie-assistante-maternelle-1200.webp"
+             srcset="/assets/img/elodie-assistante-maternelle-800.webp 800w, /assets/img/elodie-assistante-maternelle-1200.webp 1200w"
+             sizes="(min-width: 900px) 55vw, 100vw" width="1200" height="750" loading="lazy" decoding="async"
+             alt="Page d'accueil du site d'Élodie : le jardin et l'aire de jeux en grande image, avec l'accroche « Je m'appelle Élodie ».">
+      </picture>
+    </div>
+  </section>
+
+  <!-- ====================================================================
+       4. PREUVE — ST Création Paysage (image et texte inversés).
+       ==================================================================== -->
+  <section class="scene" id="st-creation-paysage" data-reveal aria-labelledby="t-st">
+    <div class="proof proof--mirror">
+      <div class="proof-text fade">
+        <p class="kicker">ST Création Paysage, à Chaneins</p>
+        <h2 class="proof-statement" id="t-st">Trouvée sur Google depuis juillet.</h2>
+        <p class="proof-detail">L'entreprise était invisible en ligne, et une homonyme occupait déjà son nom. J'ai bâti le site autour du référencement local&nbsp;; les gérants y ajoutent <span class="lumen">eux-mêmes</span> leurs chantiers.</p>
+        <div class="action-row">
+          <a class="action" href="/projets/st-creation-paysage/"><span class="action-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 12h15M13 6l6 6-6 6"/></svg></span><span class="action-label">Lire l'histoire du projet</span><span class="sr-only"> ST Création Paysage</span></a>
+          <a class="action" href="https://www.st-creation-paysage.fr" target="_blank" rel="noopener"><span class="action-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M7 17 17 7M9 7h8v8"/></svg></span><span class="action-label">Voir le site en ligne</span><span class="sr-only"> ST Création Paysage (nouvel onglet)</span></a>
+        </div>
+      </div>
+      <picture class="frame">
+        <source type="image/avif" srcset="/assets/img/st-creation-paysage-800.avif 800w, /assets/img/st-creation-paysage-1200.avif 1200w" sizes="(min-width: 900px) 55vw, 100vw">
+        <img src="/assets/img/st-creation-paysage-1200.webp"
+             srcset="/assets/img/st-creation-paysage-800.webp 800w, /assets/img/st-creation-paysage-1200.webp 1200w"
+             sizes="(min-width: 900px) 55vw, 100vw" width="1200" height="750" loading="lazy" decoding="async"
+             alt="Page d'accueil du site ST Création Paysage : une terrasse en bois au bord d'une piscine, titre « Jardins, terrasses, piscines. Bâtis par nos mains. »">
+      </picture>
+    </div>
+  </section>
+
+  <!-- ====================================================================
+       5. MÉTHODE — une vraie séquence, donc numérotée. Voir method.css.
+       ==================================================================== -->
+  <section class="method" id="methode" aria-labelledby="t-methode">
+    <div class="method-inner">
+      <h2 id="t-methode">Ma façon de travailler.</h2>
+      <ol class="steps">
+        <li class="step is-current">
+          <span class="step-num">1 sur 4</span>
+          <h3>Comprendre</h3>
+          <p>Je prends le temps d'<span class="lumen">observer votre activité</span> avant d'écrire une ligne de code.</p>
+        </li>
+        <li class="step">
+          <span class="step-num">2 sur 4</span>
+          <h3>Proposer</h3>
+          <p>Textes, design, concept&nbsp;: je vous montre une direction, et on l'ajuste ensemble.</p>
+        </li>
+        <li class="step">
+          <span class="step-num">3 sur 4</span>
+          <h3>Construire</h3>
+          <p>Un site rapide, accessible, <span class="lumen">qui vous appartient</span>. Sans abonnement imposé.</p>
+        </li>
+        <li class="step">
+          <span class="step-num">4 sur 4</span>
+          <h3>Suivre</h3>
+          <p>Le suivi fait partie du métier&nbsp;: corrections, évolutions, fiche Google, résultats mesurés.</p>
+        </li>
+      </ol>
+      <!-- Accès direct à chaque étape (mode enchaîné uniquement). -->
+      <div class="step-meter">
+        <button type="button" aria-label="Étape 1 : Comprendre"></button>
+        <button type="button" aria-label="Étape 2 : Proposer"></button>
+        <button type="button" aria-label="Étape 3 : Construire"></button>
+        <button type="button" aria-label="Étape 4 : Suivre"></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================================================================
+       6. PARCOURS — formation classique, travail épaulé par l'IA.
+       ==================================================================== -->
+  <section class="scene" id="parcours" data-reveal aria-labelledby="t-parcours">
+    <div class="journey">
+      <!-- PHOTO À REMPLACER : déposer la nouvelle image sous le même nom,
+           /assets/img/portrait.webp, au format 4:5 (idéalement 720 × 900 px,
+           WebP, moins de 150 ko). Rien d'autre à modifier, sauf le texte
+           alternatif ci-dessous si le cadrage change. -->
+      <picture class="frame">
+        <img src="/assets/img/portrait.webp" width="720" height="900" loading="lazy" decoding="async"
+             alt="Portrait d'Olivier Barontini.">
+      </picture>
+      <div class="journey-text fade">
+        <p class="kicker">Mon parcours</p>
+        <h2 id="t-parcours">Formé au code, épaulé par l'IA.</h2>
+        <p>Pendant dix-huit ans, j'ai été <strong>éducateur de jeunes enfants</strong>. J'ai appris à observer avant d'agir, et à expliquer simplement.</p>
+        <p>Aujourd'hui, je développe. Je suis <strong>certifié développeur web par OpenClassrooms</strong> (titre RNCP)&nbsp;: React, Node.js, Express, MongoDB. Je continue de me former à l'automatisation et à l'IA, que j'utilise chaque jour pour travailler plus vite et plus juste.</p>
+        <!-- Ce qui nourrit le regard : des traits personnels, pas des compétences
+             techniques. À enrichir ou alléger librement (une ligne = un <li>). -->
+        <h3 class="traits-title">Ce qui me nourrit aussi</h3>
+        <ul class="traits">
+          <li>Ancien bachelier littéraire, option arts plastiques</li>
+          <li>Amateur de beaux jardins</li>
+          <li>Curieux de design et d'architecture</li>
+          <li>Détectoriste à mes heures</li>
+        </ul>
+        <div class="icon-row">
+          <a class="icon-link" href="https://github.com/olivierbarontini" target="_blank" rel="noopener" aria-label="Mes projets sur GitHub (nouvel onglet)">
+            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M8.5 7 3.5 12l5 5M15.5 7l5 5-5 5M13.5 5l-3 14"/></svg>
+          </a>
+          <a class="icon-link" href="https://www.linkedin.com/in/olivier-barontini-5407103a3/" target="_blank" rel="noopener" aria-label="Mon profil LinkedIn (nouvel onglet)">
+            <svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><text x="12" y="16.5" text-anchor="middle" font-family="Georgia,serif" font-size="15.5" font-weight="700">in</text></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================================================================
+       7. QUESTIONS — <details> natif : s'ouvre au clic ou au clavier,
+       fonctionne sans JavaScript. Données structurées FAQPage dans le <head>.
+       ==================================================================== -->
+  <section class="scene" id="questions" data-reveal aria-labelledby="t-questions">
+    <div class="faq">
+      <h2 id="t-questions">Vos questions, mes réponses.</h2>
+      <div class="faq-list fade">
+        <details class="faq-item">
+          <summary><span>Je n'y connais rien en technique. Est-ce un problème ?</span><span class="faq-sign" aria-hidden="true"></span></summary>
+          <p>Non, c'est même pour ça que je suis là. Je vous explique chaque choix simplement, sans jargon, et vous validez chaque étape.</p>
+        </details>
+        <!-- TARIFS À AJUSTER : ce sont des repères de marché, pas vos prix
+             définitifs. Dès que vous aurez fait trois devis réels, remplacez
+             ces montants par vos propres fourchettes. -->
+        <details class="faq-item">
+          <summary><span>Combien coûte un site ?</span><span class="faq-sign" aria-hidden="true"></span></summary>
+          <p>Un site vitrine sur mesure démarre à 1&nbsp;200&nbsp;€, et se situe le plus souvent entre 1&nbsp;200 et 2&nbsp;500&nbsp;€ selon le nombre de pages et le travail de rédaction. Une première automatisation démarre à 400&nbsp;€. La maintenance est facturée à part, au coup par coup ou au forfait annuel.</p>
+          <p>Ces montants sont des repères, pas un tarif fixe&nbsp;: le prix exact dépend de votre besoin réel. Le premier échange est gratuit et sans engagement.</p>
+        </details>
+        <details class="faq-item">
+          <summary><span>Combien de temps faut-il ?</span><span class="faq-sign" aria-hidden="true"></span></summary>
+          <p>Les délais sont courts&nbsp;: je travaille sur peu de projets à la fois. Le délai exact est annoncé dans le devis, et vous voyez le site avancer étape par étape.</p>
+        </details>
+        <details class="faq-item">
+          <summary><span>Le site m'appartiendra-t-il ?</span><span class="faq-sign" aria-hidden="true"></span></summary>
+          <p>Oui. Le site, les textes et le nom de domaine sont à vous. Aucun abonnement ne vous est imposé.</p>
+        </details>
+        <details class="faq-item">
+          <summary><span>Pourrai-je modifier mon site moi-même ?</span><span class="faq-sign" aria-hidden="true"></span></summary>
+          <p>Si vous le souhaitez, oui. Je peux prévoir un espace simple pour ajouter vos photos ou changer vos textes, comme je l'ai fait pour ST Création Paysage.</p>
+        </details>
+        <details class="faq-item">
+          <summary><span>Travaillez-vous à distance ?</span><span class="faq-sign" aria-hidden="true"></span></summary>
+          <p>Oui. Je me déplace dans un rayon d'environ 30&nbsp;km autour de Bourg-en-Bresse, et plus loin selon le projet. Partout ailleurs, je travaille à distance&nbsp;: visio, e-mail, étapes partagées en ligne.</p>
+        </details>
+        <details class="faq-item">
+          <summary><span>Assurez-vous la maintenance&nbsp;?</span><span class="faq-sign" aria-hidden="true"></span></summary>
+          <p>Oui, et c'est volontaire&nbsp;: un site laissé seul vieillit vite. Mises à jour, sauvegardes, corrections, petites évolutions — vous choisissez ce que vous me confiez, au coup par coup ou en suivi régulier.</p>
+        </details>
+        <details class="faq-item">
+          <summary><span>Et après la mise en ligne ?</span><span class="faq-sign" aria-hidden="true"></span></summary>
+          <p>Le suivi fait partie du métier&nbsp;: corrections, évolutions, fiche Google, résultats mesurés. On décide ensemble de ce dont vous avez besoin.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================================================================
+       8. CONTACT — Netlify Forms, puis copie automatique vers Airtable
+       (netlify/functions/submission-created.mjs).
+       ==================================================================== -->
+  <section class="scene" id="contact" aria-labelledby="t-contact">
+    <div class="contact">
+      <div class="contact-intro">
+        <h2 id="t-contact">Parlons de votre projet.</h2>
+        <p class="lead">Une idée, un site à refaire, une tâche qui vous prend trop de temps&nbsp;: écrivez-moi, <span class="lumen">même si tout n'est pas encore clair</span>.</p>
+        <!-- Trois promesses courtes : ce qu'un artisan pressé veut savoir
+             avant d'écrire. ENGAGEMENT : le délai annoncé ici doit être tenu.
+             Validé le 22/09/2026 à trois jours ouvrés. -->
+        <ul class="assurances">
+          <li>Premier échange gratuit</li>
+          <li>Sans engagement</li>
+          <li>Réponse sous 3 jours ouvrés</li>
+        </ul>
+        <div class="action-row">
+          <a class="action" href="mailto:olivier.barontini@gmail.com"><span class="action-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="5" width="18" height="14" rx="1.5"/><path d="M3.5 6.5 12 13l8.5-6.5"/></svg></span><span class="action-label">olivier.barontini@gmail.com</span></a>
+        </div>
+      </div>
+
+      <form class="form" name="contact" method="POST" action="/merci/"
+            data-netlify="true" netlify-honeypot="bot-field">
+        <input type="hidden" name="form-name" value="contact">
+        <p class="form-trap" aria-hidden="true">
+          <label>Ne pas remplir <input name="bot-field" tabindex="-1" autocomplete="off"></label>
+        </p>
+
+        <!-- Nom et e-mail côte à côte sur grand écran : deux champs courts
+             sur une seule ligne, le regard descend plus vite. -->
+        <div class="field-row">
+          <div class="field">
+            <label for="f-nom">Votre nom</label>
+            <input id="f-nom" name="nom" type="text" autocomplete="name" required maxlength="120">
+          </div>
+          <div class="field">
+            <label for="f-email">Votre e-mail</label>
+            <input id="f-email" name="email" type="email" autocomplete="email" required maxlength="200">
+          </div>
+        </div>
+
+        <fieldset class="field">
+          <legend>Votre projet concerne</legend>
+          <div class="choices">
+            <label class="choice"><input type="radio" name="projet" value="Site" required><span>Un site</span></label>
+            <label class="choice"><input type="radio" name="projet" value="Automatisation"><span>Une automatisation</span></label>
+            <label class="choice"><input type="radio" name="projet" value="IA"><span>De l'IA</span></label>
+            <label class="choice"><input type="radio" name="projet" value="À définir"><span>Je ne sais pas encore</span></label>
+          </div>
+        </fieldset>
+
+        <div class="field">
+          <label for="f-message">Votre message</label>
+          <textarea id="f-message" name="message" required maxlength="5000" placeholder="Quelques lignes suffisent."></textarea>
+        </div>
+
+        <div class="form-send">
+          <button class="btn btn--send" type="submit">
+            <span>Recevoir un premier avis</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg>
+          </button>
+          <p class="form-note">Vos informations servent uniquement à vous répondre. <a href="/confidentialite/">Politique de confidentialité</a></p>
+        </div>
+        <p class="form-status" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <!-- Identité légale : à compléter dès l'obtention du SIREN. -->
+  <p>Olivier Barontini, développeur web à Montagnat (Ain)<br>
+  <small>Entrepreneur individuel — SIREN <span class="todo">à compléter</span></small></p>
+  <nav aria-label="Informations légales">
+    <ul>
+      <li><a href="/mentions-legales/">Mentions légales</a></li>
+      <li><a href="/confidentialite/">Confidentialité</a></li>
+      <li><a href="/cgv/">Conditions de prestation</a></li>
+    </ul>
+  </nav>
+</footer>
+
+<!-- Un script par responsabilité, chargés en différé (après le HTML). -->
+<script src="/assets/js/thread-nav.js" defer></script>
+<script src="/assets/js/hero-reveal.js" defer></script>
+<script src="/assets/js/scene-reveal.js" defer></script>
+<script src="/assets/js/method-steps.js" defer></script>
+<script src="/assets/js/contact-form.js" defer></script>
+<script src="/assets/js/cursor.js" defer></script>
+<script src="/assets/js/offer-toggle.js" defer></script>
+<script src="/assets/js/invite.js" defer></script>
+</body>
+</html>

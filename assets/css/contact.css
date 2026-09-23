@@ -1,0 +1,111 @@
+/* ==========================================================================
+   CONTACT — trois icônes pour les pressés, un formulaire pour les autres.
+   ========================================================================== */
+.contact{ display:grid; gap:clamp(48px,8vh,80px); align-items:start; }
+.contact-intro h2{ max-width:12ch; }
+.contact-intro .lead{ margin-top:1.4rem; }
+.contact-intro .action-row{ margin-top:2.2rem; flex-direction:column; align-items:flex-start; }
+@media (min-width:900px){
+  /* Le formulaire occupe la plus grande part de la scène : c'est l'action
+     attendue ici, le texte de gauche n'est qu'une introduction. */
+  .contact{ grid-template-columns:minmax(0,4fr) minmax(0,7fr); gap:clamp(40px,5vw,90px); }
+  .contact-intro{ position:sticky; top:clamp(96px,16vh,180px); }
+}
+
+.form{ display:grid; gap:clamp(26px,3vh,34px); max-width:none; }
+.field{ display:grid; gap:8px; }
+.field label,
+.field legend{ font-size:var(--fs-small); color:var(--mist); padding:0; }
+
+/* Champs : un simple trait sous le texte, pas de boîte. */
+/* Champs un peu plus grands que le texte courant : ils doivent appeler
+   la main, sans boîte ni cadre. */
+.field input,
+.field textarea{
+  width:100%;
+  padding:14px 0;
+  border:0; border-bottom:1px solid rgba(var(--parchment-rgb),.38);
+  border-radius:0;
+  background:transparent; color:var(--parchment);
+  font:inherit; font-size:var(--fs-lead);
+  transition:border-color var(--fast) var(--ease);
+}
+.field textarea{ min-height:170px; resize:vertical; line-height:1.6; }
+.field input:focus-visible,
+.field textarea:focus-visible{ outline:none; border-bottom-color:var(--ember); box-shadow:0 1px 0 var(--ember); }
+.field input:user-invalid,
+.field textarea:user-invalid{ border-bottom-color:#E8907A; }
+
+/* Choix du type de projet : des pastilles cliquables (vrais boutons radio). */
+fieldset.field{ border:0; margin:0; padding:0; }
+.choices{ display:flex; flex-wrap:wrap; gap:10px; margin-top:4px; }
+.choice input{ position:absolute; opacity:0; width:1px; height:1px; }
+.choice span{
+  display:inline-flex; align-items:center; min-height:44px; padding:0 18px;
+  border-radius:999px; box-shadow:inset 0 0 0 1px rgba(var(--parchment-rgb),.3);
+  font-size:var(--fs-small); cursor:pointer;
+  transition:background var(--fast) var(--ease), color var(--fast) var(--ease), box-shadow var(--fast) var(--ease);
+}
+.choice span:hover{ box-shadow:inset 0 0 0 1px var(--thread); }
+.choice input:checked + span{ background:var(--thread); color:var(--night); box-shadow:none; }
+.choice input:focus-visible + span{ outline:2px solid var(--ember); outline-offset:3px; }
+
+.form-note{ font-size:var(--fs-small); color:var(--mist); }
+.form-note a{ color:var(--parchment); }
+
+/* Piège à robots : invisible pour les humains, rempli par les robots. */
+.form-trap{ position:absolute; left:-9999px; }
+
+/* Message de retour après envoi (annoncé aux lecteurs d'écran). */
+.form-status{ min-height:1.7em; font-size:var(--fs-small); }
+.form-status.is-ok{ color:var(--ember); }
+.form-status.is-error{ color:#E8907A; }
+
+/* --- Proportions du formulaire ------------------------------------------
+   Deux champs courts sur une ligne, le message en pleine largeur : le
+   formulaire paraît plus court et mieux rangé qu'une colonne unique. */
+.field-row{ display:grid; gap:inherit; }
+@media (min-width:640px){
+  .field-row{ grid-template-columns:1fr 1fr; gap:clamp(24px,3vw,40px); }
+}
+.field textarea::placeholder{ color:var(--mist); opacity:.55; }
+
+/* Envoi : le bouton d'abord, la mention légale à côté (et dessous sur
+   petit écran), pour que l'action reste le point fort de la scène. */
+.form-send{
+  display:flex; flex-wrap:wrap; align-items:center; gap:18px 28px;
+  margin-top:6px;
+}
+.form-send .form-note{ max-width:34ch; margin:0; }
+
+/* Le bouton reprend le fil doré du site : dégradé chaud, halo au survol,
+   flèche qui avance. Il doit être le seul élément plein de la page. */
+.btn--send{
+  min-height:58px; padding:0 30px;
+  background:linear-gradient(120deg,var(--thread),var(--ember));
+  color:var(--night);
+  font-size:var(--fs-body);
+  box-shadow:0 8px 28px rgba(var(--thread-rgb),.22);
+  transition:box-shadow .3s var(--ease), transform .3s var(--ease), filter var(--fast) var(--ease);
+}
+.btn--send svg{ width:20px; height:20px; transition:transform var(--fast) var(--ease); }
+.btn--send:hover{
+  background:linear-gradient(120deg,var(--thread),var(--ember));
+  box-shadow:0 10px 34px rgba(var(--thread-rgb),.42);
+  transform:translateY(-1px);
+}
+.btn--send:hover svg{ transform:translateX(4px); }
+.btn--send:disabled{ filter:saturate(.4); transform:none; cursor:progress; }
+
+@media (max-width:639.98px){
+  .btn--send{ width:100%; justify-content:center; }
+}
+
+/* Trois repères courts avant le formulaire : ce qui rassure un visiteur
+   pressé. Même motif de nœud doré que le fil de navigation. */
+.assurances{ margin-top:1.8rem; display:grid; gap:.5rem; }
+.assurances li{ display:flex; align-items:center; gap:14px; font-size:var(--fs-small); }
+.assurances li::before{
+  content:''; flex:none; width:7px; height:7px; border-radius:50%;
+  background:var(--thread); box-shadow:0 0 8px rgba(var(--thread-rgb),.6);
+}

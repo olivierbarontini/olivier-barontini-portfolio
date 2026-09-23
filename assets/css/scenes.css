@@ -1,0 +1,136 @@
+/* ==========================================================================
+   SCÈNES — chaque section de l'accueil occupe un écran et porte une seule
+   idée. Mise en page commune ici, puis une règle par type de scène.
+   ========================================================================== */
+.scene{
+  min-height:100svh;
+  display:grid; align-content:center;
+  padding:var(--scene-pad) var(--gutter) var(--scene-pad) var(--rail-space);
+  scroll-snap-align:start;
+}
+/* :where() = spécificité nulle : les classes (.kicker, .proof-statement)
+   gardent toujours la main sur cette taille par défaut. */
+:where(.scene) h2{ font-size:var(--fs-h2); }
+
+/* ---------- Apparition : une image qui se dévoile comme un fil tiré ----------
+   Actif seulement si scene-reveal.js a posé .has-motion sur <html>
+   (JavaScript présent ET mouvement non réduit). Sinon tout est visible. */
+.has-motion .scene .frame{
+  clip-path:inset(0 100% 0 0);
+  transition:clip-path var(--slow) var(--ease);
+}
+.has-motion .scene .fade{
+  opacity:0;
+  transition:opacity .9s var(--ease) .25s;
+}
+.has-motion .scene.is-in .frame{ clip-path:inset(0 0 0 0); }
+.has-motion .scene.is-in .fade{ opacity:1; }
+
+/* Cadre d'image : l'image remplit toujours son cadre, bien recadrée. */
+.frame{ display:block; position:relative; overflow:hidden; background:var(--deep); }
+.frame img{ width:100%; height:100%; object-fit:cover; }
+
+/* ---------- Ce que je fais ---------- */
+/* Cette scène porte cinq lignes : on lui donne des marges un peu plus
+   courtes que les autres pour qu'elle tienne dans un écran. */
+.scene:has(.offer){ padding-block:clamp(56px,9vh,110px); }
+/* Cinq lignes : un peu plus serré et un peu plus petit que les titres de
+   scène, pour que l'ensemble tienne dans un écran. */
+.offer{ display:grid; gap:clamp(20px,3vh,40px); max-width:70rem; }
+.offer-item{ display:grid; gap:.9rem; }
+.offer-item h3{ font-size:clamp(1.65rem,1.2rem + 1.7vw,2.5rem); font-weight:300; }
+.offer-item p{ color:var(--mist); max-width:var(--measure); font-size:var(--fs-body); line-height:1.55; }
+/* Mobile avec JavaScript : les titres deviennent des boutons dépliables,
+   avec le même trait et le même signe « + » que la FAQ (cohérence). */
+.offer.is-collapsible{ gap:0; border-top:1px solid var(--line); }
+.offer.is-collapsible .offer-item{ gap:0; border-bottom:1px solid var(--line); }
+.offer.is-collapsible .offer-item h3{ font-size:clamp(1.4rem,1.1rem + 1.4vw,1.9rem); }
+.offer.is-collapsible .offer-item p{ padding:0 0 24px; }
+.offer-toggle{
+  display:flex; align-items:center; justify-content:space-between; gap:20px;
+  width:100%; min-height:72px; padding:12px 0;
+  border:0; background:none; color:inherit; cursor:pointer;
+  font:inherit; line-height:1.15; letter-spacing:inherit; text-align:left;
+}
+.offer-toggle[aria-expanded="true"]{ color:var(--ember); }
+.offer-toggle[aria-expanded="true"] .faq-sign{ color:var(--thread); box-shadow:inset 0 0 0 1px rgba(var(--thread-rgb),.8); }
+.offer-toggle[aria-expanded="true"] .faq-sign::after{ transform:rotate(0deg); }
+.has-motion .offer-item.is-open p{ animation:faqIn .45s var(--ease); }
+
+@media (min-width:900px){
+  .offer-item{ grid-template-columns:minmax(0,1.15fr) minmax(0,1fr); align-items:baseline; gap:48px; }
+}
+
+/* ---------- Preuves (projets clients) ---------- */
+.proof{ display:grid; gap:clamp(36px,6vh,64px); align-items:center; }
+.proof .frame{ aspect-ratio:16/10; border-radius:3px; }
+.proof-statement{
+  font-size:var(--fs-statement);
+  font-weight:280;
+  line-height:.98;
+  letter-spacing:-.03em;
+  max-width:11ch;
+}
+.proof-detail{ margin-top:1.6rem; color:var(--mist); max-width:var(--measure); }
+.proof .action-row{ margin-top:2rem; }
+
+@media (min-width:900px){
+  .proof{ grid-template-columns:minmax(0,5fr) minmax(0,7fr); gap:clamp(40px,6vw,96px); }
+  /* Une scène sur deux inverse image et texte : un rythme, pas un gabarit. */
+  .proof--mirror .proof-text{ order:2; }
+  .proof--mirror{ grid-template-columns:minmax(0,7fr) minmax(0,5fr); }
+}
+/* Mobile : l'image reste dans les marges. Débordant à droite, elle
+   donnait l'impression d'une page mal cadrée. */
+@media (max-width:899.98px){
+  .proof .frame{ order:-1; }
+}
+
+/* ---------- Parcours ---------- */
+.journey{ display:grid; gap:clamp(36px,6vh,64px); align-items:center; }
+.journey .frame{ aspect-ratio:4/5; max-height:72svh; max-width:440px; border-radius:3px; }
+.journey-text p + p{ margin-top:1.2rem; }
+.journey-text h2{ margin-bottom:1.8rem; max-width:14ch; }
+.journey-text p{ max-width:40ch; color:var(--mist); }
+.journey-text strong{ color:var(--parchment); font-weight:450; }
+.journey .icon-row{ margin-top:2rem; }
+@media (min-width:900px){
+  .journey{ grid-template-columns:minmax(0,4fr) minmax(0,6fr); gap:clamp(40px,6vw,110px); }
+}
+
+/* ---------- Pied de page ---------- */
+.site-footer{
+  display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:20px;
+  padding:40px var(--gutter) max(40px,env(safe-area-inset-bottom)) var(--rail-space);
+  border-top:1px solid var(--line);
+  font-size:var(--fs-small); color:var(--mist);
+}
+.site-footer nav ul{ display:flex; flex-wrap:wrap; gap:8px 24px; }
+.site-footer a{ text-decoration:none; }
+.site-footer a:hover{ color:var(--parchment); text-decoration:underline; text-underline-offset:4px; }
+
+@media (max-width:899.98px){
+  .journey .frame{ max-height:56svh; max-width:none; }
+}
+
+/* Traits personnels (scène Parcours) : chaque ligne est un petit nœud
+   sur le fil, le même motif que la navigation. */
+.traits-title{
+  margin-top:2.2rem;
+  font-size:var(--fs-small); font-weight:400; line-height:1.5; letter-spacing:0;
+  color:var(--thread);
+}
+.traits{ margin-top:.8rem; display:grid; gap:.5rem; }
+.traits li{
+  display:flex; align-items:center; gap:14px;
+  color:var(--parchment);
+}
+.traits li::before{
+  content:''; flex:none;
+  width:7px; height:7px; border-radius:50%;
+  background:var(--thread);
+  box-shadow:0 0 8px rgba(var(--thread-rgb),.6);
+}
+
+/* Rappel d'identité dans le pied de page. */
+.site-footer small{ font-size:.85em; opacity:.85; }
