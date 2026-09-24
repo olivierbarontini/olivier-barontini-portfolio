@@ -1,0 +1,46 @@
+/* ==========================================================================
+   LA LAMPE — les réalisations sont mises en lumière, comme le Hero.
+
+   Le sens : mon métier, c'est de rendre visibles des activités qui ne
+   l'étaient pas. La capture d'un site client arrive « de nuit ». Chaque
+   geste du visiteur laisse une trace :
+   - la souris « peint » la lumière : ce qu'elle a éclairé le reste ;
+   - dès qu'environ un tiers de l'image est éclairé, la lumière se diffuse
+     seule dans le reste ;
+   - sans geste pendant 3 s (ou au doigt), l'image s'éclaire d'elle-même.
+
+   Rendu : l'image « de nuit » (filtre CSS) reste dessous ; un canvas posé
+   par-dessus dessine la même image en couleurs, uniquement là où la
+   lumière est passée. Une fois tout éclairé, le canvas disparaît et
+   l'image d'origine reprend ses couleurs.
+   Pas de JS, mouvement réduit, animations en pause : images en couleurs.
+   ========================================================================== */
+.frame > picture{ display:block; width:100%; height:100%; }
+
+/* Même image des deux côtés de la transition vers la page du projet
+   (déclenchée par le lien « Lire le projet en détail »). */
+#elodie .frame{ view-transition-name:cover-elodie; }
+#st-creation-paysage .frame{ view-transition-name:cover-st; }
+
+.lamp-canvas{
+  position:absolute; inset:0; width:100%; height:100%;
+  pointer-events:none;
+}
+
+.frame.is-lamp > picture img{
+  filter:saturate(.12) brightness(.26) contrast(1.1);
+}
+/* Fin : le canvas est alors entièrement éclairé, identique à l'image en
+   couleurs. On bascule sans transition, sinon l'image repasserait par
+   le sombre une fraction de seconde. */
+.frame.is-lamp.is-revealed > picture img{ filter:none; transition:none; }
+.frame.is-revealed .lamp-canvas{ display:none; }
+
+/* Animations mises en pause (bouton) : tout en couleurs, sans canvas. */
+html:not(.has-motion) .frame.is-lamp > picture img{ filter:none; }
+html:not(.has-motion) .lamp-canvas{ display:none; }
+
+@media (forced-colors:active){
+  .frame.is-lamp > picture img{ filter:none; }
+  .lamp-canvas{ display:none; }
+}

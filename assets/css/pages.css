@@ -26,7 +26,11 @@
 .case-story h2{ font-size:clamp(1.6rem,1.2rem + 1.6vw,2.4rem); }
 .case-story p{ color:var(--mist); max-width:60ch; }
 @media (min-width:900px){
-  .case-story section{ grid-template-columns:minmax(0,4fr) minmax(0,7fr); gap:48px; }
+  .case-story section{ grid-template-columns:minmax(0,4fr) minmax(0,7fr); gap:0 48px; align-items:start; }
+  .case-story section p + p{ margin-top:1rem; }
+  /* Titre à gauche, sur toute la hauteur ; les paragraphes s'empilent à droite. */
+  .case-story section h2{ grid-row:1 / span 9; }
+  .case-story section p{ grid-column:2; }
 }
 .case-end{ margin-top:clamp(72px,12vh,140px); display:flex; flex-wrap:wrap; gap:14px; align-items:center; }
 
@@ -37,3 +41,4 @@
 .prose ul{ list-style:disc; padding-left:1.2em; }
 .todo{ color:var(--thread); }
 .page-bar .action-icon{ background:rgba(0,6,11,.6); backdrop-filter:blur(6px); }
+.case-status{ margin-top:.8rem; font-size:var(--fs-small); color:var(--mist); font-style:italic; }

@@ -29,7 +29,7 @@
   position:absolute; left:-4px; top:-4px;
   width:8px; height:8px; border-radius:50%;
   background:var(--ember);
-  box-shadow:0 0 10px 2px rgba(var(--thread-rgb),.85), 0 0 28px 8px rgba(var(--thread-rgb),.35);
+  box-shadow:0 0 8px 1px rgba(var(--thread-rgb),.6), 0 0 22px 6px rgba(var(--moon-rgb),.12);
   transition:transform var(--fast) var(--ease), opacity var(--fast) var(--ease);
 }
 /* L'anneau : n'apparaît que sur un élément cliquable. */
@@ -45,6 +45,23 @@
 .cursor.is-text .cursor-dot,
 .cursor.is-out .cursor-dot{ opacity:0; }
 .cursor.is-down .cursor-ring{ transform:scale(.8); }
+
+/* Libellé dans l'anneau (éléments marqués data-cursor, ex. « Voir » sur
+   les réalisations) : l'anneau s'agrandit et annonce l'action du clic. */
+.cursor-text{
+  position:absolute; left:0; top:0;
+  transform:translate(-50%,-50%) scale(.6);
+  font-size:.8125rem; letter-spacing:.02em; color:var(--night);
+  opacity:0; white-space:nowrap;
+  transition:opacity .25s var(--ease), transform .3s var(--ease);
+}
+.cursor.is-labeled .cursor-ring{
+  transform:scale(1.7);
+  background:rgba(var(--parchment-rgb),.92);
+  box-shadow:none; opacity:1;
+}
+.cursor.is-labeled .cursor-dot{ opacity:0; }
+.cursor.is-labeled .cursor-text{ opacity:1; transform:translate(-50%,-50%) scale(1); }
 
 @media (forced-colors:active){
   .cursor{ display:none !important; }

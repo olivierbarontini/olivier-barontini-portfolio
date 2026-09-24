@@ -1,111 +1,153 @@
 /* ==========================================================================
-   CONTACT — trois icônes pour les pressés, un formulaire pour les autres.
+   CONTACT — une introduction à gauche, le formulaire à droite.
+
+   Le formulaire vit sur un panneau à peine plus clair que la nuit : pas de
+   bordure, seulement un changement de fond qui l'enveloppe et dit « ici,
+   on écrit ». Les couleurs y sont neutres (--moon) : l'or du site reste
+   au fil et aux repères, il n'entre pas dans les champs.
+
+   Hauteur : sur grand écran, le formulaire entier tient dans la fenêtre.
+   La scène n'est donc plus « aimantée » (scroll-snap) : on arrive au
+   formulaire et il ne bouge plus.
    ========================================================================== */
-.contact{ display:grid; gap:clamp(48px,8vh,80px); align-items:start; }
+#contact{ scroll-snap-align:none; }
+.contact{ display:grid; gap:clamp(40px,7vh,72px); align-items:start; }
 .contact-intro h2{ max-width:12ch; }
 .contact-intro .lead{ margin-top:1.4rem; }
 .contact-intro .action-row{ margin-top:2.2rem; flex-direction:column; align-items:flex-start; }
 @media (min-width:900px){
-  /* Le formulaire occupe la plus grande part de la scène : c'est l'action
-     attendue ici, le texte de gauche n'est qu'une introduction. */
-  .contact{ grid-template-columns:minmax(0,4fr) minmax(0,7fr); gap:clamp(40px,5vw,90px); }
-  .contact-intro{ position:sticky; top:clamp(96px,16vh,180px); }
+  .contact{ grid-template-columns:minmax(0,4fr) minmax(0,7fr); gap:clamp(40px,5vw,96px); align-items:center; }
+  #contact{ padding-block:clamp(56px,9vh,110px); }
 }
 
-.form{ display:grid; gap:clamp(26px,3vh,34px); max-width:none; }
-.field{ display:grid; gap:8px; }
+/* ---------- Le panneau ---------- */
+.form{
+  display:grid; gap:clamp(28px,3.6vh,40px);
+  padding:clamp(24px,3.4vw,52px);
+  background:var(--panel);
+  border-radius:var(--radius);
+}
+/* Mobile : le panneau touche les bords, sinon les champs sont trop étroits. */
+@media (max-width:639.98px){
+  .form{ margin-inline:calc(var(--gutter) * -1); padding:28px var(--gutter); border-radius:0; }
+}
+
+/* Groupes : un titre discret, pas de trait. L'espace suffit à séparer. */
+.form-group{
+  display:grid; gap:clamp(16px,2.2vh,22px);
+  margin:0; padding:0; border:0; min-width:0;
+}
+.form-group + .form-group{ padding-top:clamp(24px,3.2vh,34px); border-top:1px solid rgba(var(--moon-rgb),.08); }
+.form-group legend{
+  float:left; width:100%; padding:0; margin:0 0 2px;
+  font-size:var(--fs-body); font-weight:420; color:var(--parchment);
+}
+.form-group legend + *{ clear:both; }
+.hint{ font-size:var(--fs-small); color:var(--mist); opacity:.8; }
+.field-label{ font-size:var(--fs-small); color:var(--mist); }
+
+.call{ display:grid; gap:clamp(16px,2.2vh,22px); }
+.call[hidden]{ display:none; }
+.has-motion .call:not([hidden]){ animation:faqIn .45s var(--ease); }
+@media (min-width:640px){ .call .field:first-child{ max-width:22rem; } }
+
+.field{ display:grid; gap:6px; }
 .field label,
 .field legend{ font-size:var(--fs-small); color:var(--mist); padding:0; }
 
-/* Champs : un simple trait sous le texte, pas de boîte. */
-/* Champs un peu plus grands que le texte courant : ils doivent appeler
-   la main, sans boîte ni cadre. */
+/* ---------- Champs : un fond un cran plus sombre que le panneau ----------
+   Le champ se lit comme un creux dans le panneau. Au focus, le fond
+   s'éclaircit à peine et un trait fin apparaît dessous. */
 .field input,
 .field textarea{
   width:100%;
-  padding:14px 0;
-  border:0; border-bottom:1px solid rgba(var(--parchment-rgb),.38);
-  border-radius:0;
-  background:transparent; color:var(--parchment);
-  font:inherit; font-size:var(--fs-lead);
-  transition:border-color var(--fast) var(--ease);
+  padding:12px 14px;
+  border:0; border-radius:var(--radius);
+  background:rgba(0,6,11,.55);
+  box-shadow:inset 0 -1px 0 rgba(var(--moon-rgb),.16);
+  color:var(--parchment);
+  font:inherit; font-size:var(--fs-body);
+  transition:background var(--fast) var(--ease), box-shadow var(--fast) var(--ease);
 }
-.field textarea{ min-height:170px; resize:vertical; line-height:1.6; }
+.field textarea{ min-height:7.5em; resize:vertical; line-height:1.55; }
+.field input:hover,
+.field textarea:hover{ box-shadow:inset 0 -1px 0 rgba(var(--moon-rgb),.32); }
 .field input:focus-visible,
-.field textarea:focus-visible{ outline:none; border-bottom-color:var(--ember); box-shadow:0 1px 0 var(--ember); }
+.field textarea:focus-visible{
+  outline:none;
+  background:rgba(0,6,11,.8);
+  box-shadow:inset 0 -1px 0 var(--moon), 0 0 0 1px rgba(var(--moon-rgb),.18);
+}
 .field input:user-invalid,
-.field textarea:user-invalid{ border-bottom-color:#E8907A; }
+.field textarea:user-invalid{ box-shadow:inset 0 -1px 0 #E8907A; }
+.field textarea::placeholder{ color:var(--mist); opacity:.5; }
 
-/* Choix du type de projet : des pastilles cliquables (vrais boutons radio). */
+/* ---------- Choix : des étiquettes rectangulaires, neutres ---------- */
 fieldset.field{ border:0; margin:0; padding:0; }
-.choices{ display:flex; flex-wrap:wrap; gap:10px; margin-top:4px; }
+.choices{ display:flex; flex-wrap:wrap; gap:8px; }
 .choice input{ position:absolute; opacity:0; width:1px; height:1px; }
 .choice span{
-  display:inline-flex; align-items:center; min-height:44px; padding:0 18px;
-  border-radius:999px; box-shadow:inset 0 0 0 1px rgba(var(--parchment-rgb),.3);
+  display:inline-flex; align-items:center; min-height:42px; padding:0 16px;
+  border-radius:var(--radius);
+  background:rgba(0,6,11,.55);
+  box-shadow:inset 0 0 0 1px rgba(var(--moon-rgb),.12);
+  color:var(--mist);
   font-size:var(--fs-small); cursor:pointer;
   transition:background var(--fast) var(--ease), color var(--fast) var(--ease), box-shadow var(--fast) var(--ease);
 }
-.choice span:hover{ box-shadow:inset 0 0 0 1px var(--thread); }
-.choice input:checked + span{ background:var(--thread); color:var(--night); box-shadow:none; }
-.choice input:focus-visible + span{ outline:2px solid var(--ember); outline-offset:3px; }
+.choice span:hover{ color:var(--parchment); box-shadow:inset 0 0 0 1px rgba(var(--moon-rgb),.32); }
+/* Choix actif : texte clair, contour clair, un petit carré plein devant. */
+.choice span::before{
+  content:''; width:0; height:6px; margin-right:0;
+  background:var(--moon);
+  transition:width var(--fast) var(--ease), margin var(--fast) var(--ease);
+}
+.choice input:checked + span{
+  color:var(--parchment);
+  background:rgba(var(--moon-rgb),.07);
+  box-shadow:inset 0 0 0 1px rgba(var(--moon-rgb),.55);
+}
+.choice input:checked + span::before{ width:6px; margin-right:10px; }
+.choice input:focus-visible + span{ outline:2px solid var(--moon); outline-offset:3px; }
 
+/* ---------- Envoi ---------- */
+.form-send{ display:flex; flex-wrap:wrap; align-items:center; gap:14px 28px; }
+.form-send .form-note{ max-width:34ch; margin:0; }
 .form-note{ font-size:var(--fs-small); color:var(--mist); }
 .form-note a{ color:var(--parchment); }
+
+/* Le seul bouton plein du site : clair, net, sans lueur. */
+.btn--send{
+  min-height:54px; padding:0 26px;
+  background:var(--parchment); color:var(--night);
+  font-size:var(--fs-body);
+  transition:background var(--fast) var(--ease);
+}
+.btn--send svg{ width:20px; height:20px; transition:transform var(--fast) var(--ease); }
+.btn--send:hover{ background:#fff; }
+.btn--send:hover svg{ transform:translateX(4px); }
+.btn--send:disabled{ opacity:.6; cursor:progress; }
+@media (max-width:639.98px){ .btn--send{ width:100%; justify-content:center; } }
 
 /* Piège à robots : invisible pour les humains, rempli par les robots. */
 .form-trap{ position:absolute; left:-9999px; }
 
-/* Message de retour après envoi (annoncé aux lecteurs d'écran). */
-.form-status{ min-height:1.7em; font-size:var(--fs-small); }
-.form-status.is-ok{ color:var(--ember); }
+.form-status{ min-height:1.7em; margin-top:-12px; font-size:var(--fs-small); }
+.form-status:empty{ display:none; }
+.form-status.is-ok{ color:var(--moon); }
 .form-status.is-error{ color:#E8907A; }
 
-/* --- Proportions du formulaire ------------------------------------------
-   Deux champs courts sur une ligne, le message en pleine largeur : le
-   formulaire paraît plus court et mieux rangé qu'une colonne unique. */
-.field-row{ display:grid; gap:inherit; }
+/* Deux champs courts sur une ligne. */
+.field-row{ display:grid; gap:inherit; align-items:start; }
 @media (min-width:640px){
-  .field-row{ grid-template-columns:1fr 1fr; gap:clamp(24px,3vw,40px); }
-}
-.field textarea::placeholder{ color:var(--mist); opacity:.55; }
-
-/* Envoi : le bouton d'abord, la mention légale à côté (et dessous sur
-   petit écran), pour que l'action reste le point fort de la scène. */
-.form-send{
-  display:flex; flex-wrap:wrap; align-items:center; gap:18px 28px;
-  margin-top:6px;
-}
-.form-send .form-note{ max-width:34ch; margin:0; }
-
-/* Le bouton reprend le fil doré du site : dégradé chaud, halo au survol,
-   flèche qui avance. Il doit être le seul élément plein de la page. */
-.btn--send{
-  min-height:58px; padding:0 30px;
-  background:linear-gradient(120deg,var(--thread),var(--ember));
-  color:var(--night);
-  font-size:var(--fs-body);
-  box-shadow:0 8px 28px rgba(var(--thread-rgb),.22);
-  transition:box-shadow .3s var(--ease), transform .3s var(--ease), filter var(--fast) var(--ease);
-}
-.btn--send svg{ width:20px; height:20px; transition:transform var(--fast) var(--ease); }
-.btn--send:hover{
-  background:linear-gradient(120deg,var(--thread),var(--ember));
-  box-shadow:0 10px 34px rgba(var(--thread-rgb),.42);
-  transform:translateY(-1px);
-}
-.btn--send:hover svg{ transform:translateX(4px); }
-.btn--send:disabled{ filter:saturate(.4); transform:none; cursor:progress; }
-
-@media (max-width:639.98px){
-  .btn--send{ width:100%; justify-content:center; }
+  .field-row{ grid-template-columns:1fr 1fr; gap:clamp(16px,2vw,28px); }
+  .field-row--name{ grid-template-columns:minmax(0,1.6fr) minmax(0,1fr); }
 }
 
-/* Trois repères courts avant le formulaire : ce qui rassure un visiteur
-   pressé. Même motif de nœud doré que le fil de navigation. */
+/* Trois repères avant le formulaire : petits carrés, sans lueur. */
 .assurances{ margin-top:1.8rem; display:grid; gap:.5rem; }
 .assurances li{ display:flex; align-items:center; gap:14px; font-size:var(--fs-small); }
-.assurances li::before{
-  content:''; flex:none; width:7px; height:7px; border-radius:50%;
-  background:var(--thread); box-shadow:0 0 8px rgba(var(--thread-rgb),.6);
+.assurances li::before{ content:''; flex:none; width:5px; height:5px; background:var(--thread); }
+@media (min-width:1100px){
+  .field-row--reply{ grid-template-columns:minmax(0,1.6fr) minmax(0,1fr); }
 }

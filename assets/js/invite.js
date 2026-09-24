@@ -2,7 +2,7 @@
  * invite.js — ce qui mène au formulaire (voir invite.css).
  *
  *  A. Quand le formulaire arrive à l'écran : .is-arrived (une seule fois).
- *  B. Pastille « Me contacter » : visible après le Hero et « Ce que je fais »,
+ *  B. Pastille « Me contacter » : visible dès la section Réalisations,
  *     masquée dès que la section Contact est à l'écran.
  *  C. Mots .lumen : s'allument en croisant le milieu de l'écran, et restent
  *     allumés.
@@ -16,7 +16,7 @@
   /* ---------- A ---------- */
   var form = document.querySelector('form[name="contact"]');
   if (form && motion) {
-    form.querySelectorAll('.field input:not([type="radio"]), .field textarea')
+    form.querySelectorAll('.field input:not([type="radio"]):not([type="checkbox"]), .field textarea')
       .forEach(function (el, i) { el.style.setProperty('--i', i); });
     var fo = new IntersectionObserver(function (entries) {
       if (!entries[0].isIntersecting) return;
@@ -28,13 +28,13 @@
 
   /* ---------- B ---------- */
   var invite = document.querySelector('.invite');
-  var start = document.getElementById('elodie');
+  var start = document.getElementById('realisations');
   var contact = document.getElementById('contact');
   if (invite && start && contact) {
     var pastStart = false, contactVisible = false;
     function render() { invite.classList.toggle('is-shown', pastStart && !contactVisible); }
 
-    // « Passé le début » : le haut de la section Élodie est au-dessus
+    // « Passé le début » : le haut de la section Réalisations est au-dessus
     // du bas de l'écran.
     new IntersectionObserver(function (entries) {
       var r = entries[0].boundingClientRect;

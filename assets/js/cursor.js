@@ -5,6 +5,8 @@
  * et le mouvement autorisé (.has-motion). Sinon, rien ne change.
  *  - Le point suit la souris avec une légère souplesse.
  *  - Sur un lien ou un bouton, un anneau apparaît autour du point.
+ *  - Sur un élément marqué data-cursor="…", l'anneau s'agrandit et affiche
+ *    ce mot (ex. « Voir » sur les réalisations).
  *  - Dans un champ de saisie, le point s'efface pour laisser le curseur texte.
  *  - Quand la souris sort de la fenêtre, le point disparaît.
  */
@@ -15,7 +17,8 @@
   var el = document.createElement('div');
   el.className = 'cursor';
   el.setAttribute('aria-hidden', 'true');
-  el.innerHTML = '<span class="cursor-ring"></span><span class="cursor-dot"></span>';
+  el.innerHTML = '<span class="cursor-ring"></span><span class="cursor-dot"></span><span class="cursor-text"></span>';
+  var textEl = el.querySelector('.cursor-text');
   document.body.appendChild(el);
   document.documentElement.classList.add('has-cursor');
 
@@ -45,6 +48,11 @@
     var t = e.target;
     el.classList.toggle('is-text', !!(t.closest && t.closest(TEXT)));
     el.classList.toggle('is-link', !!(t.closest && t.closest(CLICKABLE)) && !(t.closest && t.closest(TEXT)));
+    // Libellé dans l'anneau pour les éléments marqués data-cursor (« Voir »).
+    var labeled = t.closest && t.closest('[data-cursor]');
+    var label = labeled ? labeled.getAttribute('data-cursor') : '';
+    if (textEl.textContent !== label) textEl.textContent = label;
+    el.classList.toggle('is-labeled', !!label);
     if (rafId === null) rafId = requestAnimationFrame(frame);
   }, { passive: true });
 

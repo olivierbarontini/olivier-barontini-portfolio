@@ -10,7 +10,13 @@
  *
  * Table Airtable attendue (noms de colonnes modifiables dans FIELDS) :
  *   Nom (texte) · Email (e-mail) · Projet (choix unique) · Message (texte long)
- *   Reçu le (date + heure) · Source (texte) · Statut (choix unique)
+ *   Code postal (texte) · Préférence (choix unique) · Téléphone (téléphone)
+ *   Créneau (choix unique) · Reçu le (date + heure) · Source (texte)
+ *   Statut (choix unique)
+ *
+ * Préférence, Téléphone et Créneau servent à trier les réponses : rappel
+ * téléphonique ou réponse écrite. Le Code postal sert à vérifier la zone
+ * de déplacement.
  */
 
 // Correspondance champ du formulaire -> colonne Airtable.
@@ -19,6 +25,10 @@ const FIELDS = {
   email: 'Email',
   projet: 'Projet',
   message: 'Message',
+  code_postal: 'Code postal',
+  preference: 'Préférence',
+  telephone: 'Téléphone',
+  creneau: 'Créneau',
 };
 
 // Limite de longueur par sécurité (le formulaire limite déjà côté navigateur).
@@ -49,6 +59,11 @@ export const handler = async (event) => {
     [FIELDS.email]: clip(data.email, 200),
     [FIELDS.projet]: clip(data.projet, 40),
     [FIELDS.message]: clip(data.message, 5000),
+    [FIELDS.code_postal]: clip(data.code_postal, 5),
+    [FIELDS.preference]: clip(data.preference, 20) || 'E-mail',
+    // Téléphone et créneau : envoyés seulement si l'appel a été choisi.
+    ...(data.telephone ? { [FIELDS.telephone]: clip(data.telephone, 20) } : {}),
+    ...(data.telephone && data.creneau ? { [FIELDS.creneau]: clip(data.creneau, 20) } : {}),
     'Reçu le': payload.created_at || new Date().toISOString(),
     Source: 'Site web',
     Statut: 'Nouveau',

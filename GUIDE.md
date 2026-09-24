@@ -24,13 +24,15 @@ Une responsabilité par fichier, aucun fichier qui en fait deux.
 | `contact.css` | Formulaire | 62 |
 | `cursor.css` | Curseur lumineux | 52 |
 | `pages.css` | Pages projets et pages légales | 39 |
+| `lamp.css` | Réalisations « de nuit », révélées par la lumière | 45 |
 | `motion-flag.js` | Autoriser ou non les animations | 11 |
 | `scene-reveal.js` | Apparition des scènes | 25 |
 | `hero-reveal.js` | Halo du Hero | 89 |
 | `thread-nav.js` | Progression, nœud actif, panneau mobile | 87 |
 | `method-steps.js` | Enchaînement des étapes | 59 |
 | `cursor.js` | Curseur lumineux | 54 |
-| `contact-form.js` | Envoi du formulaire | 46 |
+| `contact-prefs.js` | Téléphone demandé seulement si l'appel est choisi | 28 |
+| `contact-form.js` | Envoi du formulaire | 49 |
 | `submission-created.mjs` | Copie vers Airtable (serveur) | 79 |
 
 Total : environ 1 200 lignes, sans aucune dépendance, sans build.

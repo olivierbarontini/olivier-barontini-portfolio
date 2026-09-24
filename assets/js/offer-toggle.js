@@ -1,5 +1,5 @@
 /*
- * offer-toggle.js — « Ce que je fais » en titres dépliables, sur mobile.
+ * offer-toggle.js — « Services » en titres dépliables, sur mobile.
  *
  * Sur un écran de moins de 900 px, seuls les cinq titres sont visibles ;
  * un toucher sur un titre déplie son texte. Au-dessus de 900 px, ou sans

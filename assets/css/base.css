@@ -92,13 +92,13 @@ ul,ol{ margin:0; padding:0; list-style:none; }
 .btn{
   display:inline-flex; align-items:center; gap:.6em;
   min-height:48px; padding:0 1.5em;
-  border:0; border-radius:999px;
+  border:0; border-radius:var(--radius);
   background:var(--parchment); color:var(--night);
   font:inherit; font-size:var(--fs-small); font-weight:500;
   text-decoration:none; cursor:pointer;
   transition:background var(--fast) var(--ease);
 }
-.btn:hover{ background:var(--ember); }
+.btn:hover{ background:#fff; }
 .btn svg{ width:18px; height:18px; }
 
 @media (prefers-reduced-motion:reduce){
@@ -137,3 +137,36 @@ ul,ol{ margin:0; padding:0; list-style:none; }
 .action:hover .action-icon svg{ transform:translateX(2px); }
 .action:hover .action-label,
 .action:focus-visible .action-label{ color:var(--parchment); background-size:100% 1px; }
+
+/* En-tête de section : étiquette (le nom de la section, le même que dans
+   la navigation), titre qui dit ce que la section contient, et au besoin
+   une phrase d'introduction. Toutes les sections suivent ce modèle. */
+.section-head{ display:grid; gap:0; max-width:46rem; }
+.section-head h2{ max-width:18ch; }
+.section-head .lead{ margin-top:1.3rem; max-width:44ch; }
+
+/* ---------- Transition entre pages (réalisation → page du projet) ----------
+   La capture cliquée sur l'accueil devient l'image de couverture de la
+   page du projet (même view-transition-name des deux côtés). Navigateurs
+   qui ne gèrent pas encore cette technique : la page s'ouvre normalement.
+   Mouvement réduit ou animations en pause : pas de transition. */
+@view-transition{ navigation:auto; }
+::view-transition-group(*){ animation-duration:.7s; animation-timing-function:cubic-bezier(.22,.61,.24,1); }
+@media (prefers-reduced-motion:reduce){
+  @view-transition{ navigation:none; }
+}
+html:not(.has-motion)::view-transition-group(*),
+html:not(.has-motion)::view-transition-old(*),
+html:not(.has-motion)::view-transition-new(*){ animation:none; }
+
+/* ---------- Bouton « animations en pause » ----------
+   Critère WCAG 2.2.2 : tout mouvement automatique de plus de 5 s doit
+   pouvoir être arrêté. Masqué si le système demande déjà moins de
+   mouvement (rien ne bouge alors). */
+.motion-toggle{ border:0; background:none; padding:0; cursor:pointer; font:inherit; }
+.motion-toggle .icon-play{ display:none; }
+.motion-toggle[aria-pressed="true"] .icon-pause{ display:none; }
+.motion-toggle[aria-pressed="true"] .icon-play{ display:block; }
+@media (prefers-reduced-motion:reduce){ .motion-toggle{ display:none !important; } }
+/* En pause : l'indice de scroll du Hero s'arrête aussi. */
+html:not(.has-motion) .hero-cue span{ animation:none; opacity:.7; }

@@ -30,6 +30,7 @@
 <link rel="stylesheet" href="/assets/css/faq.css">
 <link rel="stylesheet" href="/assets/css/contact.css">
 <link rel="stylesheet" href="/assets/css/invite.css">
+<link rel="stylesheet" href="/assets/css/lamp.css">
 
 <script type="application/ld+json">
 {
@@ -101,15 +102,7 @@
       "name": "Assurez-vous la maintenance ?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Oui, et c'est volontaire : un site laissé seul vieillit vite. Mises à jour, sauvegardes, corrections, petites évolutions — vous choisissez ce que vous me confiez, au coup par coup ou en suivi régulier."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Et après la mise en ligne ?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Le suivi fait partie du métier : corrections, évolutions, fiche Google, résultats mesurés. On décide ensemble de ce dont vous avez besoin."
+        "text": "Oui. Un site laissé seul vieillit vite. Mises à jour, sauvegardes, corrections, petites évolutions, suivi de la fiche Google et des résultats : vous choisissez ce que vous me confiez, au coup par coup ou en suivi régulier."
       }
     }
   ]
@@ -127,6 +120,11 @@
 <!-- Barre du haut (mobile et tablette) : nom + bouton Menu. -->
 <header class="topbar">
   <a class="topbar-name" href="#accueil">Olivier Barontini</a>
+  <button class="motion-toggle icon-link topbar-motion" type="button" aria-pressed="false" aria-label="Mettre les animations en pause">
+    <svg class="icon-pause" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M9 6v12M15 6v12"/></svg>
+    <svg class="icon-play" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z"/></svg>
+  </button>
+  
   <button class="thread-toggle" type="button" aria-expanded="false" aria-controls="thread">
     <span class="thread-toggle-label">Menu</span>
     <svg class="icon-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
@@ -136,14 +134,13 @@
 
 <nav class="thread" id="thread" aria-label="Sections de la page">
   <ol class="thread-list">
-    <li><a href="#accueil"><span class="thread-knot" aria-hidden="true"></span><span class="thread-label">Accueil</span></a></li>
-    <li><a href="#ce-que-je-fais"><span class="thread-knot" aria-hidden="true"></span><span class="thread-label">Ce que je fais</span></a></li>
-    <li><a href="#elodie"><span class="thread-knot" aria-hidden="true"></span><span class="thread-label">Élodie, assistante maternelle</span></a></li>
-    <li><a href="#st-creation-paysage"><span class="thread-knot" aria-hidden="true"></span><span class="thread-label">ST Création Paysage</span></a></li>
-    <li><a href="#methode"><span class="thread-knot" aria-hidden="true"></span><span class="thread-label">Ma façon de travailler</span></a></li>
-    <li><a href="#parcours"><span class="thread-knot" aria-hidden="true"></span><span class="thread-label">Mon parcours</span></a></li>
-    <li><a href="#questions"><span class="thread-knot" aria-hidden="true"></span><span class="thread-label">Vos questions</span></a></li>
-    <li><a href="#contact"><span class="thread-knot" aria-hidden="true"></span><span class="thread-label">Contact</span></a></li>
+    <li style="--i:0"><a href="#accueil"><span class="thread-knot" aria-hidden="true"></span><span class="thread-label">Accueil</span></a></li>
+    <li style="--i:1"><a href="#services"><span class="thread-knot" aria-hidden="true"></span><span class="thread-label">Services</span></a></li>
+    <li style="--i:2"><a href="#realisations"><span class="thread-knot" aria-hidden="true"></span><span class="thread-label">Réalisations</span></a></li>
+    <li style="--i:3"><a href="#methode"><span class="thread-knot" aria-hidden="true"></span><span class="thread-label">Méthode</span></a></li>
+    <li style="--i:4"><a href="#parcours"><span class="thread-knot" aria-hidden="true"></span><span class="thread-label">Parcours</span></a></li>
+    <li style="--i:5"><a href="#questions"><span class="thread-knot" aria-hidden="true"></span><span class="thread-label">Questions</span></a></li>
+    <li style="--i:6"><a href="#contact"><span class="thread-knot" aria-hidden="true"></span><span class="thread-label">Contact</span></a></li>
   </ol>
   <!-- Visible uniquement dans le panneau mobile. -->
   <div class="thread-panel-extras icon-row">
@@ -161,6 +158,10 @@
 
 <!-- Contact direct, toujours à portée (desktop). -->
 <div class="corner">
+  <button class="motion-toggle icon-link" type="button" aria-pressed="false" aria-label="Mettre les animations en pause">
+    <svg class="icon-pause" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M9 6v12M15 6v12"/></svg>
+    <svg class="icon-play" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z"/></svg>
+  </button>
   <a class="icon-link" href="#contact" aria-label="Me contacter"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="1.5"/><path d="M3.5 6.5 12 13l8.5-6.5"/></svg></a>
   <a class="icon-link" href="https://www.linkedin.com/in/olivier-barontini-5407103a3/" target="_blank" rel="noopener" aria-label="Mon profil LinkedIn (nouvel onglet)">
     <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><text x="12" y="16.5" text-anchor="middle" font-family="Georgia,serif" font-size="15.5" font-weight="700">in</text></svg>
@@ -193,122 +194,154 @@
     </div>
 
     <div class="hero-text">
-      <h1 id="hero-title">Je construis des sites qui racontent quelque chose.</h1>
-      <p>Je suis Olivier, développeur web à Montagnat, dans l'Ain. Je travaille aussi à distance.</p>
+      <h1 id="hero-title">Je crée des sites qui racontent votre activité.</h1>
+      <p>Je suis Olivier, développeur web à Montagnat, dans l'Ain. Je travaille avec les indépendants et les petites entreprises, sur place ou à distance.</p>
       <!-- Mobile uniquement (masqué au-dessus de 900 px, voir hero.css) :
            le Hero desktop reste volontairement sans appel à l'action. -->
       <a class="hero-contact" href="#contact">Me contacter</a>
     </div>
 
-    <a class="hero-cue" href="#ce-que-je-fais">Découvrir<span aria-hidden="true"></span></a>
+    <a class="hero-cue" href="#services">Découvrir<span aria-hidden="true"></span></a>
   </section>
 
   <!-- ====================================================================
-       2. CE QUE JE FAIS — trois phrases, rien d'autre.
+       2. SERVICES — cinq services, tous écrits de la même façon :
+       un verbe à l'infinitif (ce que je fais), puis une phrase qui dit
+       ce que le client y gagne. Garder cette règle pour tout ajout.
        ==================================================================== -->
-  <section class="scene" id="ce-que-je-fais" data-reveal aria-labelledby="t-offre">
-    <h2 class="kicker" id="t-offre">Ce que je fais</h2>
+  <section class="scene" id="services" data-reveal aria-labelledby="t-offre">
+    <div class="section-head">
+      <p class="kicker">Services</p>
+      <h2 id="t-offre">Ce que je peux faire pour vous.</h2>
+      <p class="lead">Du site internet aux outils du quotidien. Vous pouvez me confier une seule de ces missions, ou plusieurs.</p>
+    </div>
     <div class="offer fade">
       <div class="offer-item">
-        <h3>Des sites sur mesure.</h3>
-        <p>Je pars de votre activité&nbsp;: j'écris les textes, je dessine le site, je le construis.</p>
+        <h3>Créer votre site.</h3>
+        <p>J'écris les textes, je dessine et je construis un site pensé pour votre activité. Il est rapide, lisible sur téléphone, et il vous appartient.</p>
       </div>
       <div class="offer-item">
-        <h3>Des automatisations.</h3>
-        <p>Une demande arrive par votre site&nbsp;: elle est rangée, vous êtes prévenu, votre client reçoit une réponse. Devis, relances, rappels de rendez-vous&nbsp;: ce que vous refaites à la main chaque semaine <span class="lumen">se fait tout seul</span>.</p>
+        <h3>Vous rendre visible sur Google.</h3>
+        <p>Fiche Google, référencement local, suivi des résultats&nbsp;: pour que les clients de votre secteur <span class="lumen">vous trouvent</span> quand ils vous cherchent.</p>
       </div>
       <div class="offer-item">
-        <h3>De l'IA, là où elle sert.</h3>
-        <p>Pas partout. Seulement quand elle vous fait <span class="lumen">vraiment gagner du temps</span>.</p>
+        <h3>Automatiser ce qui se répète.</h3>
+        <p>Demandes de contact, devis, relances, rappels&nbsp;: ces tâches peuvent <span class="lumen">se faire toutes seules</span>. Moins de ressaisie, moins d'oublis.</p>
       </div>
       <div class="offer-item">
-        <h3>Des outils, pas seulement des sites.</h3>
-        <p>Quand un site ne suffit plus&nbsp;: un espace client, un tableau de suivi, une petite application métier accessible par abonnement. Et, une fois en ligne, une <span class="lumen">maintenance assurée</span> aussi longtemps que vous le souhaitez.</p>
+        <h3>Concevoir vos outils sur mesure.</h3>
+        <p>Espace client, tableau de suivi, petite application métier&nbsp;: quand un site ne suffit plus pour gérer votre activité.</p>
       </div>
       <div class="offer-item">
-        <h3>Et ce qui n'entre dans aucune case.</h3>
-        <p>Je donne du sens à votre projet, puis je trouve l'outil qu'il faut, ou je le fabrique. Seul ou avec d'autres, par étapes courtes, en restant à l'affût de ce qui change.</p>
+        <h3>Utiliser l'IA quand elle est utile.</h3>
+        <p>Pas partout. Seulement là où elle vous fait vraiment gagner du temps, par exemple pour répondre aux questions fréquentes.</p>
       </div>
     </div>
   </section>
 
   <!-- ====================================================================
-       3. PREUVE — Élodie. Chiffres donnés par la cliente, non arrondis.
+       3. RÉALISATIONS — une introduction, puis deux projets.
+       Chaque projet suit le même ordre de lecture : pour qui, le résultat
+       (en grand), puis sa demande / ce que j'ai fait / le résultat en détail.
+       Chiffres donnés par les clients ou relevés dans la Search Console.
        ==================================================================== -->
-  <section class="scene" id="elodie" data-reveal aria-labelledby="t-elodie">
-    <div class="proof">
-      <div class="proof-text fade">
-        <p class="kicker">Élodie, assistante maternelle à Montagnat</p>
-        <h2 class="proof-statement" id="t-elodie">Deux contrats signés, une troisième demande.</h2>
-        <p class="proof-detail">Depuis cet été, grâce à son site et à <span class="lumen">sa fiche Google</span>. J'ai écrit les textes, conçu le site et pris en charge le référencement local.</p>
-        <div class="action-row">
-          <a class="action" href="/projets/elodie-assistante-maternelle/"><span class="action-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 12h15M13 6l6 6-6 6"/></svg></span><span class="action-label">Lire l'histoire du projet</span><span class="sr-only"> d'Élodie</span></a>
-          <a class="action" href="https://elodie-assistante-maternelle.fr" target="_blank" rel="noopener"><span class="action-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M7 17 17 7M9 7h8v8"/></svg></span><span class="action-label">Voir le site en ligne</span><span class="sr-only"> d'Élodie (nouvel onglet)</span></a>
+  <section id="realisations" aria-labelledby="t-realisations">
+    <div class="scene scene--intro" data-reveal>
+      <div class="section-head fade">
+        <p class="kicker">Réalisations</p>
+        <h2 id="t-realisations">Deux sites que j'ai conçus et mis en ligne.</h2>
+        <p class="lead">Deux clients qui ne savaient pas encore ce qu'il leur fallait. Pour chacun&nbsp;: ce qu'il m'a demandé, ce que j'ai fait, et ce qui a changé depuis.</p>
+      </div>
+    </div>
+
+    <article class="scene" id="elodie" data-reveal aria-labelledby="t-elodie">
+      <div class="proof">
+        <div class="proof-text fade">
+          <p class="kicker">Projet 1 sur 2, pour Élodie, assistante maternelle à Montagnat</p>
+          <!-- Transparence : projets réalisés pour des proches (choix du 24/09/2026). -->
+          <p class="proof-status">Mon premier projet, réalisé pour un proche.</p>
+          <h3 class="proof-statement" id="t-elodie">Deux contrats signés après la mise en ligne.</h3>
+          <dl class="proof-facts">
+            <div><dt>Sa demande</dt><dd>Aucune, au départ&nbsp;: elle ne voyait pas l'intérêt d'un site.</dd></div>
+            <div><dt>Ce que j'ai fait</dt><dd>Je l'ai convaincue d'essayer, puis j'ai tout construit&nbsp;: textes, design, code, fiche Google et référencement local.</dd></div>
+            <div><dt>Le résultat</dt><dd>Elle a vite changé d'avis. Une première famille l'a contactée <span class="lumen">une semaine</span> après la mise en ligne, puis deux contrats ont suivi, et une troisième demande.</dd></div>
+          </dl>
+          <div class="action-row">
+            <a class="action" href="/projets/elodie-assistante-maternelle/"><span class="action-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 12h15M13 6l6 6-6 6"/></svg></span><span class="action-label">Lire le projet en détail</span><span class="sr-only"> : le site d'Élodie</span></a>
+            <a class="action" href="https://elodie-assistante-maternelle.fr" target="_blank" rel="noopener"><span class="action-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M7 17 17 7M9 7h8v8"/></svg></span><span class="action-label">Voir son site</span><span class="sr-only"> (nouvel onglet)</span></a>
+          </div>
+        </div>
+        <div class="frame" data-lamp>
+          <picture>
+          <source type="image/avif" srcset="/assets/img/elodie-assistante-maternelle-800.avif 800w, /assets/img/elodie-assistante-maternelle-1200.avif 1200w" sizes="(min-width: 900px) 55vw, 100vw">
+          <img src="/assets/img/elodie-assistante-maternelle-1200.webp"
+               srcset="/assets/img/elodie-assistante-maternelle-800.webp 800w, /assets/img/elodie-assistante-maternelle-1200.webp 1200w"
+               sizes="(min-width: 900px) 55vw, 100vw" width="1200" height="750" loading="lazy" decoding="async"
+               alt="Page d'accueil du site d'Élodie : le jardin et l'aire de jeux en grande image, avec l'accroche « Je m'appelle Élodie ».">
+        </picture>
         </div>
       </div>
-      <picture class="frame">
-        <source type="image/avif" srcset="/assets/img/elodie-assistante-maternelle-800.avif 800w, /assets/img/elodie-assistante-maternelle-1200.avif 1200w" sizes="(min-width: 900px) 55vw, 100vw">
-        <img src="/assets/img/elodie-assistante-maternelle-1200.webp"
-             srcset="/assets/img/elodie-assistante-maternelle-800.webp 800w, /assets/img/elodie-assistante-maternelle-1200.webp 1200w"
-             sizes="(min-width: 900px) 55vw, 100vw" width="1200" height="750" loading="lazy" decoding="async"
-             alt="Page d'accueil du site d'Élodie : le jardin et l'aire de jeux en grande image, avec l'accroche « Je m'appelle Élodie ».">
-      </picture>
-    </div>
-  </section>
+    </article>
 
-  <!-- ====================================================================
-       4. PREUVE — ST Création Paysage (image et texte inversés).
-       ==================================================================== -->
-  <section class="scene" id="st-creation-paysage" data-reveal aria-labelledby="t-st">
-    <div class="proof proof--mirror">
-      <div class="proof-text fade">
-        <p class="kicker">ST Création Paysage, à Chaneins</p>
-        <h2 class="proof-statement" id="t-st">Trouvée sur Google depuis juillet.</h2>
-        <p class="proof-detail">L'entreprise était invisible en ligne, et une homonyme occupait déjà son nom. J'ai bâti le site autour du référencement local&nbsp;; les gérants y ajoutent <span class="lumen">eux-mêmes</span> leurs chantiers.</p>
-        <div class="action-row">
-          <a class="action" href="/projets/st-creation-paysage/"><span class="action-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 12h15M13 6l6 6-6 6"/></svg></span><span class="action-label">Lire l'histoire du projet</span><span class="sr-only"> ST Création Paysage</span></a>
-          <a class="action" href="https://www.st-creation-paysage.fr" target="_blank" rel="noopener"><span class="action-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M7 17 17 7M9 7h8v8"/></svg></span><span class="action-label">Voir le site en ligne</span><span class="sr-only"> ST Création Paysage (nouvel onglet)</span></a>
+    <article class="scene" id="st-creation-paysage" data-reveal aria-labelledby="t-st">
+      <div class="proof proof--mirror">
+        <div class="proof-text fade">
+          <p class="kicker">Projet 2 sur 2, pour ST Création Paysage, paysagiste à Chaneins</p>
+          <p class="proof-status">Réalisé pour des proches.</p>
+          <h3 class="proof-statement" id="t-st">Leur entreprise apparaît désormais sur Google.</h3>
+          <dl class="proof-facts">
+            <div><dt>Sa demande</dt><dd>Un site et du référencement, demandés poliment, sans vouloir me déranger. Il fallait se distinguer d'une entreprise homonyme, et surtout trouver des clients.</dd></div>
+            <div><dt>Ce que j'ai fait</dt><dd>Le site vitrine et le référencement, mais aussi un espace où les gérants publient <span class="lumen">eux-mêmes</span> leurs chantiers, et des conseils pour leur fiche Google et leurs réseaux.</dd></div>
+            <div><dt>Le résultat</dt><dd>Ils ne s'attendaient pas à une telle vitrine, et elle leur plaît beaucoup. Côté Google&nbsp;: 45 visites depuis la mise en ligne, fin juillet 2026.</dd></div>
+          </dl>
+          <div class="action-row">
+            <a class="action" href="/projets/st-creation-paysage/"><span class="action-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 12h15M13 6l6 6-6 6"/></svg></span><span class="action-label">Lire le projet en détail</span><span class="sr-only"> : ST Création Paysage</span></a>
+            <a class="action" href="https://www.st-creation-paysage.fr" target="_blank" rel="noopener"><span class="action-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M7 17 17 7M9 7h8v8"/></svg></span><span class="action-label">Voir leur site</span><span class="sr-only"> (nouvel onglet)</span></a>
+          </div>
+        </div>
+        <div class="frame" data-lamp>
+          <picture>
+          <source type="image/avif" srcset="/assets/img/st-creation-paysage-800.avif 800w, /assets/img/st-creation-paysage-1200.avif 1200w" sizes="(min-width: 900px) 55vw, 100vw">
+          <img src="/assets/img/st-creation-paysage-1200.webp"
+               srcset="/assets/img/st-creation-paysage-800.webp 800w, /assets/img/st-creation-paysage-1200.webp 1200w"
+               sizes="(min-width: 900px) 55vw, 100vw" width="1200" height="750" loading="lazy" decoding="async"
+               alt="Page d'accueil du site ST Création Paysage : une terrasse en bois au bord d'une piscine, titre « Jardins, terrasses, piscines. Bâtis par nos mains. »">
+        </picture>
         </div>
       </div>
-      <picture class="frame">
-        <source type="image/avif" srcset="/assets/img/st-creation-paysage-800.avif 800w, /assets/img/st-creation-paysage-1200.avif 1200w" sizes="(min-width: 900px) 55vw, 100vw">
-        <img src="/assets/img/st-creation-paysage-1200.webp"
-             srcset="/assets/img/st-creation-paysage-800.webp 800w, /assets/img/st-creation-paysage-1200.webp 1200w"
-             sizes="(min-width: 900px) 55vw, 100vw" width="1200" height="750" loading="lazy" decoding="async"
-             alt="Page d'accueil du site ST Création Paysage : une terrasse en bois au bord d'une piscine, titre « Jardins, terrasses, piscines. Bâtis par nos mains. »">
-      </picture>
-    </div>
+    </article>
   </section>
 
   <!-- ====================================================================
-       5. MÉTHODE — une vraie séquence, donc numérotée. Voir method.css.
+       4. MÉTHODE — une vraie séquence, donc numérotée. Voir method.css.
+       Chaque étape commence par « Je » : c'est moi qui agis, vous validez.
        ==================================================================== -->
   <section class="method" id="methode" aria-labelledby="t-methode">
     <div class="method-inner">
-      <h2 id="t-methode">Ma façon de travailler.</h2>
+      <p class="kicker">Méthode</p>
+      <h2 id="t-methode">Comment se passe un projet.</h2>
       <ol class="steps">
         <li class="step is-current">
-          <span class="step-num">1 sur 4</span>
+          <span class="step-num">Étape 1 sur 4</span>
           <h3>Comprendre</h3>
-          <p>Je prends le temps d'<span class="lumen">observer votre activité</span> avant d'écrire une ligne de code.</p>
+          <p>Je découvre votre activité, vos clients et ce qui vous freine, avant d'écrire une ligne de code.</p>
         </li>
         <li class="step">
-          <span class="step-num">2 sur 4</span>
+          <span class="step-num">Étape 2 sur 4</span>
           <h3>Proposer</h3>
-          <p>Textes, design, concept&nbsp;: je vous montre une direction, et on l'ajuste ensemble.</p>
+          <p>Je vous montre une première direction&nbsp;: textes, design, fonctionnement. On l'ajuste ensemble.</p>
         </li>
         <li class="step">
-          <span class="step-num">3 sur 4</span>
+          <span class="step-num">Étape 3 sur 4</span>
           <h3>Construire</h3>
-          <p>Un site rapide, accessible, <span class="lumen">qui vous appartient</span>. Sans abonnement imposé.</p>
+          <p>Je construis, et vous voyez le projet avancer. Le résultat est rapide, accessible, et vous appartient.</p>
         </li>
         <li class="step">
-          <span class="step-num">4 sur 4</span>
+          <span class="step-num">Étape 4 sur 4</span>
           <h3>Suivre</h3>
-          <p>Le suivi fait partie du métier&nbsp;: corrections, évolutions, fiche Google, résultats mesurés.</p>
+          <p>Après la mise en ligne, je reste disponible&nbsp;: corrections, évolutions, fiche Google, résultats mesurés.</p>
         </li>
       </ol>
-      <!-- Accès direct à chaque étape (mode enchaîné uniquement). -->
       <div class="step-meter">
         <button type="button" aria-label="Étape 1 : Comprendre"></button>
         <button type="button" aria-label="Étape 2 : Proposer"></button>
@@ -319,7 +352,7 @@
   </section>
 
   <!-- ====================================================================
-       6. PARCOURS — formation classique, travail épaulé par l'IA.
+       5. PARCOURS — formation classique, travail épaulé par l'IA.
        ==================================================================== -->
   <section class="scene" id="parcours" data-reveal aria-labelledby="t-parcours">
     <div class="journey">
@@ -333,12 +366,12 @@
       </picture>
       <div class="journey-text fade">
         <p class="kicker">Mon parcours</p>
-        <h2 id="t-parcours">Formé au code, épaulé par l'IA.</h2>
-        <p>Pendant dix-huit ans, j'ai été <strong>éducateur de jeunes enfants</strong>. J'ai appris à observer avant d'agir, et à expliquer simplement.</p>
-        <p>Aujourd'hui, je développe. Je suis <strong>certifié développeur web par OpenClassrooms</strong> (titre RNCP)&nbsp;: React, Node.js, Express, MongoDB. Je continue de me former à l'automatisation et à l'IA, que j'utilise chaque jour pour travailler plus vite et plus juste.</p>
+        <h2 id="t-parcours">D'éducateur à développeur.</h2>
+        <p>Pendant dix-huit ans, j'ai été <strong>éducateur de jeunes enfants</strong>. J'y ai appris à observer avant d'agir, et à expliquer simplement. C'est ce que je fais aujourd'hui avec mes clients.</p>
+        <p>Aujourd'hui, je développe. Je suis <strong>certifié développeur web par OpenClassrooms</strong> (titre RNCP)&nbsp;: React, Node.js, Express, MongoDB. Je me forme en continu à l'automatisation et à l'IA, que j'utilise chaque jour pour travailler plus vite et plus juste.</p>
         <!-- Ce qui nourrit le regard : des traits personnels, pas des compétences
              techniques. À enrichir ou alléger librement (une ligne = un <li>). -->
-        <h3 class="traits-title">Ce qui me nourrit aussi</h3>
+        <h3 class="traits-title">En dehors du code</h3>
         <ul class="traits">
           <li>Ancien bachelier littéraire, option arts plastiques</li>
           <li>Amateur de beaux jardins</li>
@@ -358,12 +391,15 @@
   </section>
 
   <!-- ====================================================================
-       7. QUESTIONS — <details> natif : s'ouvre au clic ou au clavier,
+       6. QUESTIONS — <details> natif : s'ouvre au clic ou au clavier,
        fonctionne sans JavaScript. Données structurées FAQPage dans le <head>.
        ==================================================================== -->
   <section class="scene" id="questions" data-reveal aria-labelledby="t-questions">
     <div class="faq">
-      <h2 id="t-questions">Vos questions, mes réponses.</h2>
+      <div class="section-head">
+        <p class="kicker">Questions</p>
+        <h2 id="t-questions">Ce que l'on me demande souvent.</h2>
+      </div>
       <div class="faq-list fade">
         <details class="faq-item">
           <summary><span>Je n'y connais rien en technique. Est-ce un problème ?</span><span class="faq-sign" aria-hidden="true"></span></summary>
@@ -395,27 +431,23 @@
         </details>
         <details class="faq-item">
           <summary><span>Assurez-vous la maintenance&nbsp;?</span><span class="faq-sign" aria-hidden="true"></span></summary>
-          <p>Oui, et c'est volontaire&nbsp;: un site laissé seul vieillit vite. Mises à jour, sauvegardes, corrections, petites évolutions — vous choisissez ce que vous me confiez, au coup par coup ou en suivi régulier.</p>
-        </details>
-        <details class="faq-item">
-          <summary><span>Et après la mise en ligne ?</span><span class="faq-sign" aria-hidden="true"></span></summary>
-          <p>Le suivi fait partie du métier&nbsp;: corrections, évolutions, fiche Google, résultats mesurés. On décide ensemble de ce dont vous avez besoin.</p>
+          <p>Oui. Un site laissé seul vieillit vite. Mises à jour, sauvegardes, corrections, petites évolutions, suivi de la fiche Google et des résultats&nbsp;: vous choisissez ce que vous me confiez, au coup par coup ou en suivi régulier.</p>
         </details>
       </div>
     </div>
   </section>
 
   <!-- ====================================================================
-       8. CONTACT — Netlify Forms, puis copie automatique vers Airtable
+       7. CONTACT — Netlify Forms, puis copie automatique vers Airtable
        (netlify/functions/submission-created.mjs).
        ==================================================================== -->
   <section class="scene" id="contact" aria-labelledby="t-contact">
     <div class="contact">
       <div class="contact-intro">
+        <p class="kicker">Contact</p>
         <h2 id="t-contact">Parlons de votre projet.</h2>
         <p class="lead">Une idée, un site à refaire, une tâche qui vous prend trop de temps&nbsp;: écrivez-moi, <span class="lumen">même si tout n'est pas encore clair</span>.</p>
-        <!-- Trois promesses courtes : ce qu'un artisan pressé veut savoir
-             avant d'écrire. ENGAGEMENT : le délai annoncé ici doit être tenu.
+        <!-- ENGAGEMENT : le délai annoncé ici doit être tenu.
              Validé le 22/09/2026 à trois jours ouvrés. -->
         <ul class="assurances">
           <li>Premier échange gratuit</li>
@@ -427,6 +459,11 @@
         </div>
       </div>
 
+      <!-- Deux groupes, dans l'ordre où l'on pense : le projet, puis comment
+           vous joindre. Les choix du projet reprennent les mots de la
+           section Services. Le téléphone et le créneau ne sont demandés que
+           si la personne préfère être appelée (contact-prefs.js).
+           Sans JavaScript, tout est affiché et le téléphone reste facultatif. -->
       <form class="form" name="contact" method="POST" action="/merci/"
             data-netlify="true" netlify-honeypot="bot-field">
         <input type="hidden" name="form-name" value="contact">
@@ -434,40 +471,69 @@
           <label>Ne pas remplir <input name="bot-field" tabindex="-1" autocomplete="off"></label>
         </p>
 
-        <!-- Nom et e-mail côte à côte sur grand écran : deux champs courts
-             sur une seule ligne, le regard descend plus vite. -->
-        <div class="field-row">
-          <div class="field">
-            <label for="f-nom">Votre nom</label>
-            <input id="f-nom" name="nom" type="text" autocomplete="name" required maxlength="120">
-          </div>
-          <div class="field">
-            <label for="f-email">Votre e-mail</label>
-            <input id="f-email" name="email" type="email" autocomplete="email" required maxlength="200">
-          </div>
-        </div>
-
-        <fieldset class="field">
-          <legend>Votre projet concerne</legend>
-          <div class="choices">
+        <fieldset class="form-group">
+          <legend>Votre projet</legend>
+          <div class="choices" role="radiogroup" aria-label="Votre projet concerne">
             <label class="choice"><input type="radio" name="projet" value="Site" required><span>Un site</span></label>
-            <label class="choice"><input type="radio" name="projet" value="Automatisation"><span>Une automatisation</span></label>
-            <label class="choice"><input type="radio" name="projet" value="IA"><span>De l'IA</span></label>
+            <label class="choice"><input type="radio" name="projet" value="Visibilité Google"><span>Être visible sur Google</span></label>
+            <label class="choice"><input type="radio" name="projet" value="Automatisation / IA"><span>Automatiser une tâche</span></label>
             <label class="choice"><input type="radio" name="projet" value="À définir"><span>Je ne sais pas encore</span></label>
+          </div>
+          <div class="field">
+            <label for="f-message">Votre activité et ce que vous aimeriez changer</label>
+            <textarea id="f-message" name="message" required maxlength="5000" rows="4" placeholder="Par exemple : je suis menuisier, mes clients ne me trouvent pas sur internet."></textarea>
           </div>
         </fieldset>
 
-        <div class="field">
-          <label for="f-message">Votre message</label>
-          <textarea id="f-message" name="message" required maxlength="5000" placeholder="Quelques lignes suffisent."></textarea>
-        </div>
+        <fieldset class="form-group">
+          <legend>Vos coordonnées</legend>
+          <div class="field-row field-row--name">
+            <div class="field">
+              <label for="f-nom">Nom</label>
+              <input id="f-nom" name="nom" type="text" autocomplete="name" required maxlength="120">
+            </div>
+            <div class="field">
+              <label for="f-cp">Code postal</label>
+              <input id="f-cp" name="code_postal" type="text" inputmode="numeric" autocomplete="postal-code" required pattern="[0-9]{5}" maxlength="5" title="Cinq chiffres, par exemple 01250" aria-describedby="h-cp">
+              <p class="hint" id="h-cp">Pour savoir si je peux me déplacer.</p>
+            </div>
+          </div>
+          <div class="field-row field-row--reply">
+          <div class="field">
+            <label for="f-email">E-mail</label>
+            <input id="f-email" name="email" type="email" autocomplete="email" required maxlength="200">
+          </div>
+          <div class="field">
+            <span class="field-label" id="l-pref">Je vous réponds</span>
+            <div class="choices" role="radiogroup" aria-labelledby="l-pref">
+              <label class="choice"><input type="radio" name="preference" value="E-mail" checked><span>par e-mail</span></label>
+              <label class="choice"><input type="radio" name="preference" value="Téléphone"><span>par téléphone</span></label>
+            </div>
+          </div>
+          </div>
+          <div class="call" id="call">
+            <div class="field">
+              <label for="f-tel">Téléphone</label>
+              <input id="f-tel" name="telephone" type="tel" autocomplete="tel" maxlength="20" pattern="[0-9 +.()-]{10,20}" title="Par exemple 06 12 34 56 78">
+            </div>
+            <div class="field">
+              <span class="field-label" id="l-creneau">De préférence</span>
+              <div class="choices" role="radiogroup" aria-labelledby="l-creneau">
+                <label class="choice"><input type="radio" name="creneau" value="Matin"><span>le matin</span></label>
+                <label class="choice"><input type="radio" name="creneau" value="Midi"><span>le midi</span></label>
+                <label class="choice"><input type="radio" name="creneau" value="Fin de journée"><span>en fin de journée</span></label>
+                <label class="choice"><input type="radio" name="creneau" value="Peu importe" checked><span>peu importe</span></label>
+              </div>
+            </div>
+          </div>
+        </fieldset>
 
         <div class="form-send">
           <button class="btn btn--send" type="submit">
-            <span>Recevoir un premier avis</span>
+            <span>Envoyer ma demande</span>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg>
           </button>
-          <p class="form-note">Vos informations servent uniquement à vous répondre. <a href="/confidentialite/">Politique de confidentialité</a></p>
+          <p class="form-note">Vos informations servent uniquement à vous répondre. <a href="/confidentialite/">Confidentialité</a></p>
         </div>
         <p class="form-status" role="status" aria-live="polite"></p>
       </form>
@@ -493,9 +559,12 @@
 <script src="/assets/js/hero-reveal.js" defer></script>
 <script src="/assets/js/scene-reveal.js" defer></script>
 <script src="/assets/js/method-steps.js" defer></script>
+<script src="/assets/js/contact-prefs.js" defer></script>
 <script src="/assets/js/contact-form.js" defer></script>
 <script src="/assets/js/cursor.js" defer></script>
 <script src="/assets/js/offer-toggle.js" defer></script>
 <script src="/assets/js/invite.js" defer></script>
+<script src="/assets/js/lamp.js" defer></script>
+<script src="/assets/js/motion-toggle.js" defer></script>
 </body>
 </html>

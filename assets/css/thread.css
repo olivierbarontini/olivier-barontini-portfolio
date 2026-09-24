@@ -35,7 +35,6 @@
     background:linear-gradient(var(--thread),var(--ember));
     transform-origin:top;
     transform:scaleY(var(--progress,0));
-    box-shadow:0 0 8px rgba(var(--thread-rgb),.6);
   }
 
   .thread-list{
@@ -43,9 +42,9 @@
     height:100%;
     display:flex; flex-direction:column; justify-content:space-between;
   }
-  /* La zone cliquable se limite au nœud (28 × 28 px). Le nom de la scène
-     est sorti du flux (position absolue) : invisible, il ne peut plus
-     « capter » le survol ou le clic des liens du contenu situés à côté. */
+  /* Au repos : seuls les nœuds sont visibles, la zone cliquable se limite
+     au nœud (28 × 28 px) et les libellés sont hors du flux : ils ne
+     peuvent pas capter le survol des liens du contenu situés à côté. */
   .thread-list a{
     position:relative;
     display:flex; align-items:center;
@@ -60,26 +59,67 @@
     box-shadow:inset 0 0 0 1px rgba(var(--parchment-rgb),.45);
     transition:background var(--fast) var(--ease), box-shadow var(--fast) var(--ease), transform var(--fast) var(--ease);
   }
-  /* Le nom de la scène n'apparaît qu'au survol ou au focus :
-     le fil reste silencieux tant qu'on ne le sollicite pas. */
+
+  /* Le sommaire : au survol du fil (ou quand le clavier y entre), TOUS les
+     libellés apparaissent ensemble, l'un après l'autre, comme la table des
+     matières d'un livre. Pas de bulles : du texte posé sur un voile de nuit
+     qui monte depuis le bord gauche. Le libellé survolé s'éclaire et un
+     petit trait le relie à son nœud. */
   .thread-label{
-    position:absolute; left:40px; top:50%; margin-top:-15px;
-    font-size:var(--fs-small); line-height:1.4; color:var(--parchment);
-    padding:4px 12px; border-radius:4px;
-    background:var(--deep);
-    box-shadow:inset 0 0 0 1px var(--line), 0 6px 18px rgba(0,0,0,.5);
-    opacity:0; transform:translateX(-6px);
-    transition:opacity var(--fast) var(--ease), transform var(--fast) var(--ease);
-    pointer-events:none; white-space:nowrap;
-    z-index:2;
+    position:absolute; left:44px; top:50%;
+    transform:translate(-8px,-50%);
+    display:flex; align-items:center; gap:14px;
+    font-size:1.0625rem; font-weight:340; line-height:1; letter-spacing:.005em;
+    color:var(--mist);
+    white-space:nowrap;
+    opacity:0; pointer-events:none;
+    transition:opacity .28s var(--ease), transform .38s var(--ease), color var(--fast) var(--ease);
+    transition-delay:0s;
+  }
+  .thread-label::before{
+    content:''; width:0; height:1px; background:currentColor; opacity:.7;
+    transition:width .3s var(--ease);
+  }
+
+  /* Voile derrière le sommaire (décoratif, porté par la liste). */
+  .thread-list::before{
+    content:''; position:absolute; z-index:-1;
+    left:30px; top:-14vh; bottom:-14vh;
+    width:440px;
+    background:linear-gradient(90deg,rgba(0,6,11,.97) 0,rgba(0,6,11,.96) 70%,rgba(0,6,11,0) 100%);
+    -webkit-backdrop-filter:blur(3px); backdrop-filter:blur(3px);
+    -webkit-mask-image:linear-gradient(90deg,#000 70%,transparent);
+            mask-image:linear-gradient(90deg,#000 70%,transparent);
+    opacity:0; pointer-events:none;
+    transition:opacity .35s var(--ease);
+  }
+
+  .thread:hover .thread-list::before,
+  .thread:focus-within .thread-list::before{ opacity:1; }
+  .thread:hover .thread-list a,
+  .thread:focus-within .thread-list a{ width:260px; }
+  .thread:hover .thread-label,
+  .thread:focus-within .thread-label{
+    opacity:1; transform:translate(0,-50%); pointer-events:auto;
+    transition-delay:calc(var(--i,0) * 30ms);
   }
   .thread-list a:hover .thread-label,
-  .thread-list a:focus-visible .thread-label{ opacity:1; transform:none; }
-  .thread-list a:hover .thread-knot{ transform:scale(1.25); }
+  .thread-list a:focus-visible .thread-label{ color:var(--parchment); }
+  .thread-list a:hover .thread-label::before,
+  .thread-list a:focus-visible .thread-label::before{ width:18px; }
+  .thread-list a:hover .thread-knot{ transform:scale(1.25); box-shadow:inset 0 0 0 1px var(--parchment); }
 
+  /* Section affichée : nœud doré, libellé clair (même dans le sommaire). */
   .thread-list a[aria-current="true"] .thread-knot{
     background:var(--thread);
-    box-shadow:0 0 0 4px rgba(var(--thread-rgb),.18), 0 0 12px rgba(var(--thread-rgb),.7);
+    box-shadow:0 0 0 4px rgba(var(--thread-rgb),.16);
+  }
+  .thread-list a[aria-current="true"] .thread-label{ color:var(--parchment); }
+  .thread-list a[aria-current="true"] .thread-label::before{ width:10px; background:var(--thread); opacity:1; }
+
+  /* Mouvement réduit : pas de glissement, apparition directe. */
+  @media (prefers-reduced-motion:reduce){
+    .thread-label{ transform:translate(0,-50%); }
   }
 
   .thread-panel-extras,
@@ -123,9 +163,9 @@
      l'icône seule (deux traits) étant ambiguë sur mobile. */
   .thread-toggle{
     display:inline-flex; align-items:center; gap:10px;
-    min-height:44px; padding:0 16px 0 18px; border:0; border-radius:999px;
+    min-height:44px; padding:0 16px 0 18px; border:0; border-radius:var(--radius);
     background:rgba(8,18,26,.85); backdrop-filter:blur(8px);
-    box-shadow:inset 0 0 0 1px rgba(var(--thread-rgb),.45);
+    box-shadow:inset 0 0 0 1px rgba(var(--parchment-rgb),.28);
     color:var(--parchment); font:inherit; font-size:var(--fs-small); cursor:pointer;
   }
   .thread-toggle svg{ width:20px; height:20px; flex:none; }
@@ -160,3 +200,28 @@
 
   .thread-panel-extras{ margin-top:44px; }
 }
+
+/* ---------- Le fil arrive au bout ----------
+   Après l'envoi du formulaire (contact-form.js pose .is-complete) : le fil
+   se remplit entièrement et le dernier nœud s'allume, une fois. */
+.thread.is-complete::after{
+  transform:scaleY(1);
+  transition:transform 1.4s var(--ease);
+}
+.thread.is-complete .thread-list li:last-child .thread-knot{
+  background:var(--ember);
+  box-shadow:0 0 0 5px rgba(var(--thread-rgb),.2), 0 0 18px rgba(var(--thread-rgb),.8);
+}
+.has-motion .thread.is-complete .thread-list li:last-child .thread-knot{
+  animation:knotLit 1.6s var(--ease) .9s both;
+}
+@keyframes knotLit{
+  0%  { transform:scale(1); }
+  40% { transform:scale(1.9); }
+  100%{ transform:scale(1.25); }
+}
+.thread-progress.is-complete{ transform:scaleX(1); transition:transform 1.4s var(--ease); }
+
+/* Bouton pause dans la barre du haut (mobile) : juste avant « Menu ». */
+.topbar-motion{ margin-left:auto; }
+.topbar .motion-toggle{ width:44px; height:44px; border-radius:var(--radius); background:rgba(8,18,26,.85); box-shadow:inset 0 0 0 1px rgba(var(--parchment-rgb),.28); }

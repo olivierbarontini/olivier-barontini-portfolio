@@ -25,6 +25,7 @@
     e.preventDefault();
     if (!form.checkValidity()) { form.reportValidity(); return; }
 
+    var wantsCall = form.classList.contains('wants-call');
     button.disabled = true;
     say('Envoi en cours…');
 
@@ -36,7 +37,14 @@
       .then(function (res) {
         if (!res.ok) throw new Error('HTTP ' + res.status);
         form.reset();
-        say('Merci, votre message est bien arrivé. Je vous réponds sous 3 jours ouvrés.', 'ok');
+        // Le fil arrive au bout : il se remplit et le dernier nœud s'allume.
+        var thread = document.getElementById('thread');
+        var bar = document.querySelector('.thread-progress');
+        if (thread) thread.classList.add('is-complete');
+        if (bar) bar.classList.add('is-complete');
+        say(wantsCall
+          ? 'Merci, votre demande est bien arrivée. Je vous appelle sous 3 jours ouvrés.'
+          : 'Merci, votre demande est bien arrivée. Je vous réponds sous 3 jours ouvrés.', 'ok');
       })
       .catch(function () {
         say("Le message n'est pas parti. Réessayez, ou écrivez-moi directement à olivier.barontini@gmail.com.", 'error');

@@ -30,15 +30,16 @@
 .frame{ display:block; position:relative; overflow:hidden; background:var(--deep); }
 .frame img{ width:100%; height:100%; object-fit:cover; }
 
-/* ---------- Ce que je fais ---------- */
-/* Cette scène porte cinq lignes : on lui donne des marges un peu plus
+/* ---------- Services ---------- */
+/* Cette scène porte un en-tête et cinq lignes : des marges un peu plus
    courtes que les autres pour qu'elle tienne dans un écran. */
 .scene:has(.offer){ padding-block:clamp(56px,9vh,110px); }
+.scene:has(.offer) .section-head{ margin-bottom:clamp(36px,6vh,72px); }
 /* Cinq lignes : un peu plus serré et un peu plus petit que les titres de
    scène, pour que l'ensemble tienne dans un écran. */
 .offer{ display:grid; gap:clamp(20px,3vh,40px); max-width:70rem; }
 .offer-item{ display:grid; gap:.9rem; }
-.offer-item h3{ font-size:clamp(1.65rem,1.2rem + 1.7vw,2.5rem); font-weight:300; }
+.offer-item h3{ font-size:clamp(1.5rem,1.15rem + 1.3vw,2.2rem); font-weight:300; }
 .offer-item p{ color:var(--mist); max-width:var(--measure); font-size:var(--fs-body); line-height:1.55; }
 /* Mobile avec JavaScript : les titres deviennent des boutons dépliables,
    avec le même trait et le même signe « + » que la FAQ (cohérence). */
@@ -65,12 +66,31 @@
 .proof{ display:grid; gap:clamp(36px,6vh,64px); align-items:center; }
 .proof .frame{ aspect-ratio:16/10; border-radius:3px; }
 .proof-statement{
-  font-size:var(--fs-statement);
+  font-size:clamp(2.2rem,1.2rem + 3vw,4rem);
   font-weight:280;
-  line-height:.98;
+  line-height:1;
   letter-spacing:-.03em;
-  max-width:11ch;
+  max-width:13ch;
 }
+
+/* Introduction des réalisations : un écran court, pas une scène pleine. */
+.scene--intro{ min-height:auto; padding-bottom:0; }
+/* Le premier projet suit son introduction sans écran vide entre les deux. */
+.scene--intro + .scene{ min-height:auto; padding-top:clamp(48px,8vh,96px); scroll-snap-align:none; }
+
+/* Les trois temps d'un projet : sa demande, ce que j'ai fait, le résultat.
+   Un libellé court à gauche, le texte à droite : on lit la structure
+   d'un coup d'œil, même sans lire le détail. */
+.proof-facts{ margin:2rem 0 0; display:grid; gap:1.1rem; max-width:40rem; }
+.proof-facts > div{ display:grid; gap:.2rem; padding-top:1.1rem; border-top:1px solid var(--line); }
+.proof-facts dt{ font-size:var(--fs-small); color:var(--parchment); font-weight:450; }
+.proof-facts dd{ margin:0; color:var(--mist); line-height:1.6; }
+@media (min-width:1200px){
+  .proof-facts > div{ grid-template-columns:9.5rem minmax(0,1fr); gap:1.2rem; }
+}
+/* L'objectif du client, avant le résultat : on lit « ce qu'il voulait »,
+   puis « ce qu'il a obtenu ». */
+.proof-goal{ margin:.4rem 0 1.1rem; font-size:var(--fs-lead); font-weight:350; line-height:1.3; max-width:var(--measure); }
 .proof-detail{ margin-top:1.6rem; color:var(--mist); max-width:var(--measure); }
 .proof .action-row{ margin-top:2rem; }
 
@@ -127,10 +147,27 @@
 }
 .traits li::before{
   content:''; flex:none;
-  width:7px; height:7px; border-radius:50%;
+  width:5px; height:5px;
   background:var(--thread);
-  box-shadow:0 0 8px rgba(var(--thread-rgb),.6);
 }
 
 /* Rappel d'identité dans le pied de page. */
 .site-footer small{ font-size:.85em; opacity:.85; }
+
+/* Services, grand écran : l'en-tête reprend les deux colonnes de la liste
+   (titre à gauche, introduction à droite, alignée sur les descriptions),
+   pour que l'ensemble tienne dans un écran et se lise comme un tableau. */
+@media (min-width:900px){
+  .scene:has(.offer) .section-head{
+    max-width:70rem;
+    grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);
+    column-gap:48px; align-items:end;
+  }
+  .scene:has(.offer) .section-head .kicker{ grid-column:1 / -1; }
+  .scene:has(.offer) .section-head .lead{ margin-top:0; font-size:var(--fs-body); max-width:var(--measure); }
+  .scene:has(.offer) .section-head{ margin-bottom:clamp(28px,4.5vh,56px); padding-bottom:clamp(20px,3vh,32px); border-bottom:1px solid var(--line); }
+}
+.journey-text .kicker{ color:var(--thread); }
+
+/* Transparence : statut du projet, sous l'étiquette. */
+.proof-status{ margin:-.4rem 0 1.2rem; font-size:var(--fs-small); color:var(--mist); font-style:italic; }

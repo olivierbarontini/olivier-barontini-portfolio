@@ -24,9 +24,14 @@
   --mist:#A7A398;         /* texte secondaire — contraste 8:1 sur --night */
   --thread:#D6A35A;       /* le fil doré : accent unique du site */
   --ember:#FFD89A;        /* la lueur au bout du fil (focus, état actif) */
+  --moon:#DCE3E5;         /* lumière froide des reflets sur l'eau : la brise,
+                             les mots mis en valeur, les états sélectionnés.
+                             L'or reste réservé au fil (navigation, repères). */
+  --panel:#0A141C;        /* fond du formulaire : juste assez pour l'envelopper */
 
   --thread-rgb:214,163,90;
   --parchment-rgb:237,230,214;
+  --moon-rgb:220,227,229;
   --line:rgba(var(--parchment-rgb),.14);
 
   /* Typographie : une seule famille (Fraunces, auto-hébergée),
@@ -50,4 +55,5 @@
   --ease:cubic-bezier(.22,.61,.24,1);
   --slow:1.1s;
   --fast:.25s;
+  --radius:2px;          /* angles presque nets : boutons, choix, panneaux */
 }
